@@ -15,7 +15,6 @@ export const Route = createFileRoute("/contact")({
 });
 
 const lines = [
-  { label: "Concierge · General", phone: CONTACT.concierge.phone, wa: CONTACT.concierge.wa, note: "First point of contact for all inquiries." },
   { label: "Watches Line", phone: CONTACT.watches.phone, wa: CONTACT.watches.wa, note: "Direct line for timepiece curators." },
   { label: "Perfumes Line", phone: CONTACT.perfumes.phone, wa: CONTACT.perfumes.wa, note: "Direct line for the parfumerie atelier." },
 ];
