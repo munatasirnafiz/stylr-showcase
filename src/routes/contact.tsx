@@ -25,7 +25,7 @@ function ContactPage() {
   return (
     <>
       <section className="mx-auto max-w-7xl px-6 lg:px-10 py-24 lg:py-28">
-        <SectionLabel>Concierge</SectionLabel>
+        <SectionLabel>Inquire</SectionLabel>
         <h1 className="font-serif text-5xl md:text-6xl text-ink mt-6 leading-[1.05] max-w-3xl">
           Start a <span className="italic">private</span> inquiry.
         </h1>
