@@ -5,8 +5,8 @@ import { CONTACT, inquiryLink } from "@/data/contact";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Private Concierge · Stylr.store Dhaka" },
-      { name: "description", content: "Reach our private concierge by WhatsApp. Address, phone and inquiry lines for Stylr.store, Mirpur-2, Dhaka." },
+      { title: "Contact — Stylr.store · Mirpur-2, Dhaka" },
+      { name: "description", content: "Reach Stylr.store by WhatsApp for rare watches and niche perfumes. Bangladesh-wide delivery from our Mirpur-2 atelier." },
       { property: "og:title", content: "Contact — Stylr.store" },
       { property: "og:description", content: "Start a private inquiry by WhatsApp." },
     ],
