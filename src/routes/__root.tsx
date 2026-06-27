@@ -67,7 +67,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "A Dhaka-based maison for rare watches and niche perfumes. Hand-selected, privately delivered." },
       { name: "author", content: "Stylr.store" },
       { property: "og:title", content: "Stylr.store — Style Your Way, Shop Your Day" },
-      { property: "og:description", content: "Curated rare watches and niche perfumes, by private WhatsApp concierge from Dhaka." },
+      { property: "og:description", content: "Curated rare watches and niche perfumes, by private WhatsApp inquiry from Dhaka." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

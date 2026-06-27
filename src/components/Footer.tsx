@@ -32,14 +32,16 @@ export function Footer() {
               <span className="block text-ivory/50 text-xs uppercase tracking-widest mb-1">Delivery</span>
               {CONTACT.delivery}
             </p>
-            <p>
-              <span className="block text-ivory/50 text-xs uppercase tracking-widest mb-1">Watches</span>
-              <a className="hover:text-gold" href={CONTACT.watches.wa}>{CONTACT.watches.phone}</a>
-            </p>
-            <p>
-              <span className="block text-ivory/50 text-xs uppercase tracking-widest mb-1">Perfumes</span>
-              <a className="hover:text-gold" href={CONTACT.perfumes.wa}>{CONTACT.perfumes.phone}</a>
-            </p>
+            <div>
+              <span className="block text-ivory/50 text-xs uppercase tracking-widest mb-1">Contact</span>
+              <ul className="space-y-1">
+                {CONTACT.phones.map((p) => (
+                  <li key={p.waNumber}>
+                    <a className="hover:text-gold" href={p.wa}>{p.phone}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </address>
         </div>
       </div>
