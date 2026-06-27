@@ -3,7 +3,44 @@ import type { Product } from "@/components/ProductCard";
 const watchPrices = [9750, 9400, 9800, 9550, 9650, 9450, 9700, 9500, 9600, 9780, 9720, 9420, 9680, 9530, 9610, 9470, 9590, 9740, 9430, 9670];
 
 const watchesBase: Omit<Product, "price">[] = [
-  // New uploads (10)
+  // Latest uploads (6)
+  {
+    ref: "REF · GU-DV-SN",
+    name: "Gucci Dive — Serpent Black",
+    specs: ["Stainless steel, 45mm", "Black snake-motif dial", "Black Gucci rubber strap"],
+    image: "/products/gucci-dive-snake.jpg",
+  },
+  {
+    ref: "REF · GU-DV-RD",
+    name: "Gucci Dive — Scarlet Strap",
+    specs: ["Stainless steel, 45mm", "Black dial, luminous indices", "Scarlet rubber strap"],
+    image: "/products/gucci-dive-red.jpg",
+  },
+  {
+    ref: "REF · GU-DV-BK",
+    name: "Gucci Dive — Nero",
+    specs: ["Stainless steel, 40mm", "Matte black dial", "Black rubber strap"],
+    image: "/products/gucci-dive-black.jpg",
+  },
+  {
+    ref: "REF · DJ28-TT",
+    name: "Rolex Datejust 28 — Two-Tone",
+    specs: ["Steel & yellow gold, 28mm", "Silver dial, gold bezel", "Oyster bracelet"],
+    image: "/products/rolex-datejust28-two-tone.jpg",
+  },
+  {
+    ref: "REF · DJ28-SL",
+    name: "Rolex Datejust 28 — Silver",
+    specs: ["Stainless steel, 28mm", "Silver sunray dial", "President bracelet"],
+    image: "/products/rolex-datejust28-silver.jpg",
+  },
+  {
+    ref: "REF · DJ28-BL",
+    name: "Rolex Datejust 28 — Indigo",
+    specs: ["Stainless steel, 28mm", "Deep blue dial, smooth bezel", "Oyster bracelet"],
+    image: "/products/rolex-datejust28-blue.jpg",
+  },
+  // Previous uploads (10)
   {
     ref: "REF · OM-SM-GW",
     name: "Omega Seamaster Pro 300m — Gold/White",
@@ -133,6 +170,27 @@ export const watches: Product[] = watchesBase.map((w, i) => ({
 }));
 
 export const perfumes: Product[] = [
+  {
+    ref: "N° 501981",
+    brand: "Parfums de Marly",
+    name: "Delina Exclusif",
+    specs: ["75 ml", "Parfum", "Women"],
+    image: "/products/parfums-de-marly-delina.jpg",
+  },
+  {
+    ref: "N° 648425",
+    brand: "Yves Saint Laurent",
+    name: "Libre — Eau de Parfum",
+    specs: ["90 ml", "Eau de Parfum", "Women"],
+    image: "/products/ysl-libre.jpg",
+  },
+  {
+    ref: "N° 1801",
+    brand: "Chanel",
+    name: "Bleu de Chanel — Parfum",
+    specs: ["100 ml", "Parfum Pour Homme", "Men"],
+    image: "/products/chanel-bleu.jpg",
+  },
   {
     ref: "N° 8247",
     brand: "Dior",

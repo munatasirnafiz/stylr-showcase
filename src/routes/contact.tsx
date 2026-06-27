@@ -5,8 +5,8 @@ import { CONTACT, inquiryLink } from "@/data/contact";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Private Concierge · Stylr.store Dhaka" },
-      { name: "description", content: "Reach our private concierge by WhatsApp. Address, phone and inquiry lines for Stylr.store, Mirpur-2, Dhaka." },
+      { title: "Contact — Stylr.store · Mirpur-2, Dhaka" },
+      { name: "description", content: "Reach Stylr.store by WhatsApp for rare watches and niche perfumes. Bangladesh-wide delivery from our Mirpur-2 atelier." },
       { property: "og:title", content: "Contact — Stylr.store" },
       { property: "og:description", content: "Start a private inquiry by WhatsApp." },
     ],
@@ -15,7 +15,6 @@ export const Route = createFileRoute("/contact")({
 });
 
 const lines = [
-  { label: "Concierge · General", phone: CONTACT.concierge.phone, wa: CONTACT.concierge.wa, note: "First point of contact for all inquiries." },
   { label: "Watches Line", phone: CONTACT.watches.phone, wa: CONTACT.watches.wa, note: "Direct line for timepiece curators." },
   { label: "Perfumes Line", phone: CONTACT.perfumes.phone, wa: CONTACT.perfumes.wa, note: "Direct line for the parfumerie atelier." },
 ];
@@ -26,7 +25,7 @@ function ContactPage() {
   return (
     <>
       <section className="mx-auto max-w-7xl px-6 lg:px-10 py-24 lg:py-28">
-        <SectionLabel>Concierge</SectionLabel>
+        <SectionLabel>Inquire</SectionLabel>
         <h1 className="font-serif text-5xl md:text-6xl text-ink mt-6 leading-[1.05] max-w-3xl">
           Start a <span className="italic">private</span> inquiry.
         </h1>
@@ -35,7 +34,7 @@ function ContactPage() {
         </p>
         <div className="mt-10">
           <a
-            href={inquiryLink("concierge")}
+            href={inquiryLink("watches")}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 bg-charcoal text-ivory hover:bg-ink transition-colors px-8 py-4 text-xs uppercase tracking-[0.22em] font-medium"
