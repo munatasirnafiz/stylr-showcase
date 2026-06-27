@@ -10,7 +10,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Stylr.store — Timepieces & Parfums d'Exception · Dhaka" },
-      { name: "description", content: "Stylr.store is a Dhaka-based curated boutique for rare watches and niche perfumes. Private WhatsApp concierge, worldwide insured delivery." },
+      { name: "description", content: "Stylr.store is a Dhaka-based curated boutique for rare watches and niche perfumes. Private WhatsApp inquiry, Bangladesh-wide delivery." },
       { property: "og:title", content: "Stylr.store — Timepieces & Parfums d'Exception" },
       { property: "og:description", content: "Hand-selected rare watches and niche perfumes, by private inquiry." },
     ],
