@@ -56,8 +56,8 @@ function Home() {
         <div className="mx-auto max-w-7xl px-6 lg:px-10 py-16 grid md:grid-cols-3 gap-12">
           {[
             { n: "01", t: "Hand-Selected & Authenticated", d: "Every piece is sourced, inspected and verified by our curators before it reaches you." },
-            { n: "02", t: "Private WhatsApp Concierge", d: "No carts, no checkouts. Each inquiry is answered personally by a single dedicated curator." },
-            { n: "03", t: "Worldwide Insured Delivery", d: "Fully insured, discreetly packaged, and tracked from Dhaka to your doorstep, wherever you are." },
+            { n: "02", t: "Private WhatsApp Inquiry", d: "No carts, no checkouts. Each inquiry is answered personally by a single dedicated curator." },
+            { n: "03", t: "Bangladesh-Wide Delivery", d: "Discreetly packaged and delivered nationwide from Dhaka. Cash on delivery available in Dhaka." },
           ].map((b) => (
             <div key={b.n}>
               <span className="font-serif text-3xl text-gold">{b.n}</span>
