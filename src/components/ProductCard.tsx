@@ -42,6 +42,14 @@ export function ProductCard({
             </li>
           ))}
         </ul>
+        {product.price !== undefined && (
+          <div className="mt-5 flex items-baseline justify-between border-t border-ink/10 pt-4">
+            <span className="eyebrow text-muted-ink">Price</span>
+            <span className="font-serif text-lg text-ink">
+              ৳ {product.price.toLocaleString("en-BD")}
+            </span>
+          </div>
+        )}
         <a
           href={inquiryLink(channel, product.name)}
           target="_blank"
