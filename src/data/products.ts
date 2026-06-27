@@ -1,22 +1,70 @@
-import jomalonePear from "@/assets/products/jomalone-pear.asset.json";
-import jomaloneBlackberry from "@/assets/products/jomalone-blackberry.asset.json";
-import armaniSi from "@/assets/products/armani-si.asset.json";
-import armaniSiPassione from "@/assets/products/armani-si-passione.asset.json";
-import armaniYou from "@/assets/products/armani-you.asset.json";
-import armaniAcquaDiGio from "@/assets/products/armani-acqua-di-gio.asset.json";
-import pradaParadoxe from "@/assets/products/prada-paradoxe.asset.json";
-import diorSauvageEdp from "@/assets/products/dior-sauvage-edp.asset.json";
-import diorSauvageParfum from "@/assets/products/dior-sauvage-parfum.asset.json";
-import amouageHonour from "@/assets/products/amouage-honour.asset.json";
-import amouageLineage from "@/assets/products/amouage-lineage.asset.json";
-import amouageJourney from "@/assets/products/amouage-journey.asset.json";
-import casamoratiLira from "@/assets/products/casamorati-lira.asset.json";
-import casamoratiMefisto from "@/assets/products/casamorati-mefisto.asset.json";
 import type { Product } from "@/components/ProductCard";
 
-const watchPrices = [9750, 9400, 9800, 9550, 9650, 9450, 9700, 9500, 9600, 9780];
+const watchPrices = [9750, 9400, 9800, 9550, 9650, 9450, 9700, 9500, 9600, 9780, 9720, 9420, 9680, 9530, 9610, 9470, 9590, 9740, 9430, 9670];
 
 const watchesBase: Omit<Product, "price">[] = [
+  // New uploads (10)
+  {
+    ref: "REF · OM-SM-GW",
+    name: "Omega Seamaster Pro 300m — Gold/White",
+    specs: ["Two-tone steel & gold, 42mm", "White dial, moonphase", "Black rubber strap"],
+    image: "/products/omega-seamaster-gold-white.jpg",
+  },
+  {
+    ref: "REF · OM-SM-RB",
+    name: "Omega Seamaster Pro 300m — Rose/Blue",
+    specs: ["Steel & rose gold, 42mm", "Lacquered blue dial", "Blue rubber strap"],
+    image: "/products/omega-seamaster-rose-blue.jpg",
+  },
+  {
+    ref: "REF · DJ-DD-CP",
+    name: "Rolex His & Hers Set — Two-Tone Onyx",
+    specs: ["Datejust 31 + Day-Date 40", "Steel & yellow gold", "Black sunray dials"],
+    image: "/products/rolex-couple-two-tone-black.jpg",
+  },
+  {
+    ref: "REF · DJ41-SS",
+    name: "Rolex Datejust 41 — Silver Sunray",
+    specs: ["Oystersteel, 41mm", "Silver sunray dial, stick markers", "Jubilee, fluted bezel"],
+    image: "/products/rolex-datejust-silver-sunray.jpg",
+  },
+  {
+    ref: "REF · DJ41-BS",
+    name: "Rolex Datejust 41 — Midnight Blue",
+    specs: ["Oystersteel, 41mm", "Blue sunray dial", "Jubilee, smooth bezel"],
+    image: "/products/rolex-datejust-blue-smooth.jpg",
+  },
+  {
+    ref: "REF · AP-RO-B",
+    name: "Audemars Piguet Royal Oak — Bleu Nuit",
+    specs: ["Stainless steel, 41mm", "Midnight blue tapisserie dial", "Integrated bracelet"],
+    image: "/products/ap-royal-oak-blue.jpg",
+  },
+  {
+    ref: "REF · DD40-GR",
+    name: "Rolex Day-Date 40 — Graphite",
+    specs: ["Polished steel, 40mm", "Graphite dial, baton indices", "President bracelet"],
+    image: "/products/rolex-daydate-graphite.jpg",
+  },
+  {
+    ref: "REF · DJ41-FP",
+    name: "Rolex Datejust 41 — Full PVD",
+    specs: ["Full PVD black case", "Stealth black dial", "Jubilee bracelet"],
+    image: "/products/rolex-datejust-full-pvd.jpg",
+  },
+  {
+    ref: "REF · OP41-BR",
+    name: "Rolex Oyster Perpetual 41 — Black Roman",
+    specs: ["Stainless steel, 41mm", "Black dial, Roman numerals", "Oyster bracelet"],
+    image: "/products/rolex-oyster-perpetual-black-roman.jpg",
+  },
+  {
+    ref: "REF · DD40-CB",
+    name: "Rolex Day-Date 40 — Cobalt",
+    specs: ["Polished steel, 40mm", "Cobalt blue dial", "President bracelet"],
+    image: "/products/rolex-daydate-cobalt.jpg",
+  },
+  // Existing watches
   {
     ref: "REF · DJ41-TQ",
     name: "Rolex Datejust 41 — Tiffany Turquoise",
@@ -90,98 +138,98 @@ export const perfumes: Product[] = [
     brand: "Dior",
     name: "Sauvage — Eau de Parfum",
     specs: ["100 ml", "Eau de Parfum", "Men"],
-    image: diorSauvageEdp.url,
+    image: "/products/dior-sauvage-edp.jpg",
   },
   {
     ref: "N° 486385",
     brand: "Dior",
     name: "Sauvage Parfum",
     specs: ["100 ml", "Parfum", "Men"],
-    image: diorSauvageParfum.url,
+    image: "/products/dior-sauvage-parfum.jpg",
   },
   {
     ref: "N° P4697",
     brand: "Giorgio Armani",
     name: "Acqua di Giò — Pour Homme",
     specs: ["100 ml", "Eau de Toilette", "Men"],
-    image: armaniAcquaDiGio.url,
+    image: "/products/armani-acqua-di-gio.jpg",
   },
   {
     ref: "N° 994844",
     brand: "Giorgio Armani",
     name: "Sì Passione — Eau de Parfum",
     specs: ["100 ml", "Eau de Parfum", "Women"],
-    image: armaniSiPassione.url,
+    image: "/products/armani-si-passione.jpg",
   },
   {
     ref: "N° 610",
     brand: "Jo Malone London",
     name: "Blackberry & Bay Cologne",
     specs: ["100 ml", "Eau de Cologne", "Unisex"],
-    image: jomaloneBlackberry.url,
+    image: "/products/jomalone-blackberry.jpg",
   },
   {
     ref: "N° 410164",
     brand: "Amouage",
     name: "Honour Woman",
     specs: ["100 ml", "Eau de Parfum", "Women"],
-    image: amouageHonour.url,
+    image: "/products/amouage-honour.jpg",
   },
   {
     ref: "N° 410423",
     brand: "Amouage",
     name: "Lineage",
     specs: ["100 ml", "Eau de Parfum", "Men"],
-    image: amouageLineage.url,
+    image: "/products/amouage-lineage.jpg",
   },
   {
     ref: "N° 410232",
     brand: "Amouage",
     name: "Journey Woman",
     specs: ["100 ml", "Eau de Parfum", "Women"],
-    image: amouageJourney.url,
+    image: "/products/amouage-journey.jpg",
   },
   {
     ref: "N° 153595",
     brand: "Xerjoff Casamorati",
     name: "Lira — Eau de Parfum",
     specs: ["100 ml", "Eau de Parfum", "Women"],
-    image: casamoratiLira.url,
+    image: "/products/casamorati-lira.jpg",
   },
   {
     ref: "N° 153557",
     brand: "Xerjoff Casamorati",
     name: "Mefisto — Eau de Parfum",
     specs: ["100 ml", "Eau de Parfum", "Men"],
-    image: casamoratiMefisto.url,
+    image: "/products/casamorati-mefisto.jpg",
   },
   {
     ref: "N° 911",
     brand: "Jo Malone London",
     name: "English Pear & Freesia Cologne",
     specs: ["100 ml", "Eau de Cologne", "Unisex"],
-    image: jomalonePear.url,
+    image: "/products/jomalone-pear.jpg",
   },
   {
     ref: "N° 0588",
     brand: "Emporio Armani",
     name: "Stronger With You — Pour Homme",
     specs: ["100 ml", "Eau de Toilette", "Men"],
-    image: armaniYou.url,
+    image: "/products/armani-you.jpg",
   },
   {
     ref: "N° 816658",
     brand: "Giorgio Armani",
     name: "Sì — Eau de Parfum",
     specs: ["100 ml", "Eau de Parfum", "Women"],
-    image: armaniSi.url,
+    image: "/products/armani-si.jpg",
   },
   {
     ref: "N° 760164",
     brand: "Prada",
     name: "Paradoxe — Refillable Edition",
     specs: ["90 ml", "Eau de Parfum", "Women"],
-    image: pradaParadoxe.url,
+    image: "/products/prada-paradoxe.jpg",
   },
 ];
 
