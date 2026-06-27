@@ -29,7 +29,7 @@ function WatchesPage() {
             Timepieces, <span className="italic">carefully</span> kept.
           </h1>
           <p className="mt-6 text-ivory/70 max-w-xl text-lg">
-            Each timepiece is authenticated by our atelier in Mirpur-2 and delivered with full documentation, worldwide.
+            Each timepiece is authenticated by our atelier in Mirpur-2 and delivered with full documentation, Bangladesh-wide.
           </p>
         </div>
       </section>
