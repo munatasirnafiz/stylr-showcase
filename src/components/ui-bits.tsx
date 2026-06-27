@@ -52,16 +52,16 @@ export function ClosingCTA() {
           A private inquiry,<br />answered personally.
         </h2>
         <p className="mt-6 text-ivory/70 max-w-xl mx-auto">
-          Tell our concierge what you're looking for. Each conversation is handled by a single curator from first message to final delivery.
+          Tell us what you're looking for. Each conversation is handled by a single curator from first message to delivery — Bangladesh wide.
         </p>
         <div className="mt-10">
           <a
-            href={inquiryLink("concierge")}
+            href={inquiryLink("watches")}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 border border-gold text-gold hover:bg-gold hover:text-charcoal transition-colors px-8 py-4 text-xs uppercase tracking-[0.22em] font-medium"
           >
-            Message Concierge on WhatsApp →
+            Start a WhatsApp Inquiry →
           </a>
         </div>
       </div>
