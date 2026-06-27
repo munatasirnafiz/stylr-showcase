@@ -6,6 +6,7 @@ export interface Product {
   name: string;
   specs: string[];
   image: string;
+  price?: number;
 }
 
 export function ProductCard({
