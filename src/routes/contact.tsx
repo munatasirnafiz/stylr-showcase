@@ -34,7 +34,7 @@ function ContactPage() {
         </p>
         <div className="mt-10">
           <a
-            href={inquiryLink("concierge")}
+            href={inquiryLink("watches")}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 bg-charcoal text-ivory hover:bg-ink transition-colors px-8 py-4 text-xs uppercase tracking-[0.22em] font-medium"
