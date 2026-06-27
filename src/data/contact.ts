@@ -2,6 +2,11 @@ export const CONTACT = {
   address: "KAKOLI Apartment 562, Middle Monipur, Mirpur-2, Dhaka, Bangladesh",
   email: "hello@stylr.store",
   delivery: "Bangladesh wide — cash on delivery available in Dhaka.",
+  phones: [
+    { phone: "+880 1770 484702", wa: "https://wa.me/8801770484702", waNumber: "8801770484702" },
+    { phone: "+880 1711 885606", wa: "https://wa.me/8801711885606", waNumber: "8801711885606" },
+    { phone: "+880 1521 430196", wa: "https://wa.me/8801521430196", waNumber: "8801521430196" },
+  ],
   watches: {
     phone: "+880 1711 885606",
     wa: "https://wa.me/8801711885606",
