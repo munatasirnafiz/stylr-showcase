@@ -1,7 +1,3 @@
-import rolexBlue from "@/assets/products/rolex-datejust-blue.asset.json";
-import rolexBlack from "@/assets/products/rolex-datejust-black.asset.json";
-import rolexGreen from "@/assets/products/rolex-daydate-green.asset.json";
-import omegaSpeed from "@/assets/products/omega-speedmaster.asset.json";
 import jomalonePear from "@/assets/products/jomalone-pear.asset.json";
 import jomaloneBlackberry from "@/assets/products/jomalone-blackberry.asset.json";
 import armaniSi from "@/assets/products/armani-si.asset.json";
@@ -22,64 +18,64 @@ const watchPrices = [9750, 9400, 9800, 9550, 9650, 9450, 9700, 9500, 9600, 9780]
 
 const watchesBase: Omit<Product, "price">[] = [
   {
-    ref: "REF · 116610LN",
-    name: "Rolex Datejust 41 — Azure",
-    specs: ["904L Oystersteel", "Sunburst blue dial", "Jubilee bracelet, 41mm"],
-    image: rolexBlue.url,
+    ref: "REF · DJ41-TQ",
+    name: "Rolex Datejust 41 — Tiffany Turquoise",
+    specs: ["Oystersteel, 41mm", "Turquoise sunray dial", "Jubilee bracelet"],
+    image: "/products/rolex-datejust-tiffany.jpg",
   },
   {
-    ref: "REF · 126300BK",
-    name: "Rolex Datejust — Onyx Edition",
-    specs: ["PVD-coated steel", "Matte black dial", "Jubilee bracelet, 41mm"],
-    image: rolexBlack.url,
+    ref: "REF · DD40-IB",
+    name: "Rolex Day-Date 40 — Ice Blue",
+    specs: ["Polished steel, 40mm", "Ice blue lacquered dial", "President bracelet"],
+    image: "/products/rolex-daydate-ice-blue.jpg",
   },
   {
-    ref: "REF · 228239GR",
-    name: "Rolex Day-Date 40 — Emerald",
-    specs: ["18k white gold", "Lacquered green dial", "President bracelet"],
-    image: rolexGreen.url,
+    ref: "REF · DJ41-EM",
+    name: "Rolex Datejust 41 — Emerald",
+    specs: ["Oystersteel, 41mm", "Emerald green dial", "Jubilee, fluted bezel"],
+    image: "/products/rolex-datejust-emerald.jpg",
   },
   {
-    ref: "REF · 331.12.42",
-    name: "Omega Speedmaster '57 Co-Axial",
-    specs: ["Stainless steel, 41.5mm", "Silver chronograph dial", "Tobacco leather"],
-    image: omegaSpeed.url,
+    ref: "REF · DJ41-VR",
+    name: "Rolex Datejust 41 — Verde Royale",
+    specs: ["Oystersteel, 41mm", "Vivid green dial, stick markers", "Jubilee bracelet"],
+    image: "/products/rolex-datejust-green-stick.jpg",
   },
   {
-    ref: "REF · 116710BL",
-    name: "Rolex Datejust 41 — Azure II",
-    specs: ["904L Oystersteel", "Smooth bezel", "Jubilee, 41mm"],
-    image: rolexBlue.url,
+    ref: "REF · AP-RO-N",
+    name: "Audemars Piguet Royal Oak — Noir",
+    specs: ["Stainless steel, 41mm", "Black 'Grande Tapisserie' dial", "Integrated bracelet"],
+    image: "/products/ap-royal-oak-black.jpg",
   },
   {
-    ref: "REF · 126300SL",
-    name: "Rolex Datejust — Noir Slate",
-    specs: ["DLC finish", "Slate dial", "Jubilee bracelet"],
-    image: rolexBlack.url,
+    ref: "REF · AP-RO-W",
+    name: "Audemars Piguet Royal Oak — Blanc",
+    specs: ["Stainless steel, 41mm", "Silver tapisserie dial", "Octagonal bezel"],
+    image: "/products/ap-royal-oak-white.jpg",
   },
   {
-    ref: "REF · 218239WG",
-    name: "Rolex Day-Date — Verde Royale",
-    specs: ["White gold", "Roman markers", "Green sunburst dial"],
-    image: rolexGreen.url,
+    ref: "REF · DJ41-SR",
+    name: "Rolex Datejust 41 — Silver Roman (Ruby)",
+    specs: ["Oystersteel, 41mm", "Silver dial, red Roman markers", "Jubilee bracelet"],
+    image: "/products/rolex-datejust-silver-red-roman.jpg",
   },
   {
-    ref: "REF · 331.12.42·CR",
-    name: "Omega Speedmaster — Cream Dial",
-    specs: ["Steel case, 41.5mm", "Cream dial, rose gold hands", "Calfskin strap"],
-    image: omegaSpeed.url,
+    ref: "REF · DJ41-SO",
+    name: "Rolex Datejust 41 — Silver Roman (Onyx)",
+    specs: ["Oystersteel, 41mm", "Silver dial, black Roman markers", "Jubilee bracelet"],
+    image: "/products/rolex-datejust-silver-black-roman.jpg",
   },
   {
-    ref: "REF · 126334BL",
-    name: "Rolex Datejust 41 — Cobalt",
-    specs: ["Oystersteel & white gold", "Cobalt sunray dial", "Fluted bezel"],
-    image: rolexBlue.url,
+    ref: "REF · DJ41-SB",
+    name: "Rolex Datejust 41 — Silver Roman (Cobalt)",
+    specs: ["Oystersteel, 41mm", "Silver dial, blue Roman markers", "Jubilee bracelet"],
+    image: "/products/rolex-datejust-silver-blue-roman.jpg",
   },
   {
-    ref: "REF · 116300PVD",
-    name: "Rolex Datejust — Carbon Black",
-    specs: ["Full PVD case", "Black on black", "Jubilee bracelet"],
-    image: rolexBlack.url,
+    ref: "REF · OP36-SL",
+    name: "Rolex Oyster Perpetual 36 — Silver",
+    specs: ["Stainless steel, 36mm", "Silver dial, Roman numerals", "Oyster bracelet"],
+    image: "/products/rolex-oyster-perpetual-silver.jpg",
   },
 ];
 
