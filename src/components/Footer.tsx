@@ -24,13 +24,13 @@ export function Footer() {
           </ul>
         </div>
         <div>
-          <h4 className="eyebrow text-ivory/60">Concierge</h4>
+          <h4 className="eyebrow text-ivory/60">Visit & Inquire</h4>
           <span className="gold-rule mt-3 mb-5" />
           <address className="not-italic text-sm leading-relaxed text-ivory/80 space-y-3">
             <p>{CONTACT.address}</p>
             <p>
-              <span className="block text-ivory/50 text-xs uppercase tracking-widest mb-1">Concierge</span>
-              <a className="hover:text-gold" href={CONTACT.concierge.wa}>{CONTACT.concierge.phone}</a>
+              <span className="block text-ivory/50 text-xs uppercase tracking-widest mb-1">Delivery</span>
+              {CONTACT.delivery}
             </p>
             <p>
               <span className="block text-ivory/50 text-xs uppercase tracking-widest mb-1">Watches</span>
