@@ -171,6 +171,27 @@ export const watches: Product[] = watchesBase.map((w, i) => ({
 
 export const perfumes: Product[] = [
   {
+    ref: "N° 501981",
+    brand: "Parfums de Marly",
+    name: "Delina Exclusif",
+    specs: ["75 ml", "Parfum", "Women"],
+    image: "/products/parfums-de-marly-delina.jpg",
+  },
+  {
+    ref: "N° 648425",
+    brand: "Yves Saint Laurent",
+    name: "Libre — Eau de Parfum",
+    specs: ["90 ml", "Eau de Parfum", "Women"],
+    image: "/products/ysl-libre.jpg",
+  },
+  {
+    ref: "N° 1801",
+    brand: "Chanel",
+    name: "Bleu de Chanel — Parfum",
+    specs: ["100 ml", "Parfum Pour Homme", "Men"],
+    image: "/products/chanel-bleu.jpg",
+  },
+  {
     ref: "N° 8247",
     brand: "Dior",
     name: "Sauvage — Eau de Parfum",
