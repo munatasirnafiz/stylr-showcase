@@ -17,9 +17,14 @@ export const CONTACT = {
     wa: "https://wa.me/8801521430196",
     waNumber: "8801521430196",
   },
+  eyewear: {
+    phone: "+880 1770 484702",
+    wa: "https://wa.me/8801770484702",
+    waNumber: "8801770484702",
+  },
 } as const;
 
-export type InquiryChannel = "watches" | "perfumes";
+export type InquiryChannel = "watches" | "perfumes" | "eyewear";
 
 export function inquiryLink(channel: InquiryChannel = "watches", productName?: string) {
   const number = CONTACT[channel].waNumber;
