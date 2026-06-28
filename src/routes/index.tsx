@@ -32,7 +32,7 @@ function Home() {
               d'Exception.
             </h1>
             <p className="mt-8 text-muted-ink text-lg max-w-md leading-relaxed">
-              A private maison for the quietly discerning — rare watches and niche fragrances, hand-selected and delivered with care from Dhaka to the world.
+              A private maison for the quietly discerning — rare watches and niche fragrances, hand-selected and delivered with care.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <CTAButton to="/watches" variant="filled">Discover Watches</CTAButton>
