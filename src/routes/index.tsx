@@ -1,18 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ProductCard } from "@/components/ProductCard";
-import { SectionLabel, CTAButton, ClosingCTA } from "@/components/ui-bits";
-import { featuredWatches, featuredPerfumes } from "@/data/products";
-import { inquiryLink } from "@/data/contact";
-import heroWatches from "@/assets/hero-watches.jpg";
+import { SectionLabel, ClosingCTA } from "@/components/ui-bits";
+import { HeroCarousel } from "@/components/HeroCarousel";
+import { featuredWatches, featuredPerfumes, featuredEyewear } from "@/data/products";
 import heroPerfume from "@/assets/hero-perfume.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Stylr.store — Timepieces & Parfums d'Exception · Dhaka" },
-      { name: "description", content: "Stylr.store is a Dhaka-based curated boutique for rare watches and niche perfumes. Private WhatsApp inquiry, Bangladesh-wide delivery." },
-      { property: "og:title", content: "Stylr.store — Timepieces & Parfums d'Exception" },
-      { property: "og:description", content: "Hand-selected rare watches and niche perfumes, by private inquiry." },
+      { title: "Stylr.store — Timepieces, Parfums & Eyewear · Dhaka" },
+      { name: "description", content: "Stylr.store is a Dhaka-based curated boutique for rare watches, niche perfumes and considered eyewear. Private WhatsApp inquiry, Bangladesh-wide delivery." },
+      { property: "og:title", content: "Stylr.store — Timepieces, Parfums & Eyewear" },
+      { property: "og:description", content: "Hand-selected rare watches, niche perfumes and eyewear, by private inquiry." },
     ],
   }),
   component: Home,
@@ -21,35 +20,7 @@ export const Route = createFileRoute("/")({
 function Home() {
   return (
     <>
-      {/* HERO */}
-      <section className="relative">
-        <div className="mx-auto max-w-7xl px-6 lg:px-10 grid lg:grid-cols-2 gap-12 lg:gap-16 py-20 lg:py-28 items-center">
-          <div>
-            <p className="kicker">Stylr · Dhaka</p>
-            <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl text-ink leading-[1.05] mt-6">
-              Timepieces<br />
-              <span className="italic text-gold-deep">&</span> Parfums<br />
-              d'Exception.
-            </h1>
-            <p className="mt-8 text-muted-ink text-lg max-w-md leading-relaxed">
-              A private maison for the quietly discerning — rare watches and niche fragrances, hand-selected and delivered with care.
-            </p>
-            <div className="mt-10 flex flex-wrap gap-4">
-              <CTAButton to="/watches" variant="filled">Discover Watches</CTAButton>
-              <CTAButton to="/perfumes" variant="outline">Explore Perfumes →</CTAButton>
-            </div>
-          </div>
-          <div className="relative">
-            <div className="aspect-[4/5] overflow-hidden bg-charcoal shadow-[0_30px_80px_-30px_rgba(28,26,23,0.45)]">
-              <img src={heroWatches} alt="Featured timepiece" className="h-full w-full object-cover" />
-            </div>
-            <div className="absolute -bottom-8 -left-8 hidden md:block bg-surface border border-hairline px-6 py-5 max-w-[220px]">
-              <p className="eyebrow">Established</p>
-              <p className="font-serif text-2xl text-ink mt-1">Dhaka · BD</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroCarousel />
 
       {/* TRUST STRIP */}
       <section className="border-y border-hairline bg-surface">
@@ -127,6 +98,50 @@ function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {featuredPerfumes.map((p) => (
             <ProductCard key={p.ref} product={p} channel="perfumes" />
+          ))}
+        </div>
+      </section>
+
+      {/* EYEWEAR BANNER */}
+      <section className="bg-charcoal text-ivory">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10 py-24 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div>
+            <p className="kicker" style={{ color: "#C9A227" }}>Eyewear</p>
+            <h2 className="font-serif text-4xl md:text-5xl mt-6 leading-tight">
+              Frames worth <span className="italic">being seen</span> in.
+            </h2>
+            <p className="mt-6 text-ivory/70 text-lg leading-relaxed max-w-md">
+              Sun and optical — hand-selected for fit and finish. Polarised Ray-Ban classics alongside Italian-made acetate optical frames.
+            </p>
+            <div className="mt-10">
+              <Link
+                to="/eyewear"
+                className="inline-flex items-center gap-3 border border-gold text-gold hover:bg-gold hover:text-charcoal transition-colors px-8 py-4 text-xs uppercase tracking-[0.22em]"
+              >
+                View the Eyewear Edit →
+              </Link>
+            </div>
+          </div>
+          <div className="aspect-[4/5] overflow-hidden">
+            <img src="/products/rb4246-clubround.jpg" alt="Eyewear collection" className="h-full w-full object-cover" />
+          </div>
+        </div>
+      </section>
+
+      {/* FEATURED EYEWEAR */}
+      <section className="mx-auto max-w-7xl px-6 lg:px-10 py-24">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
+          <div>
+            <SectionLabel>The Eyewear Edit</SectionLabel>
+            <h2 className="font-serif text-4xl md:text-5xl text-ink mt-5">Featured Eyewear</h2>
+          </div>
+          <Link to="/eyewear" className="text-xs uppercase tracking-[0.22em] text-gold-deep hover:text-gold border-b border-gold pb-1 self-start md:self-end">
+            View all →
+          </Link>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          {featuredEyewear.map((p) => (
+            <ProductCard key={p.ref} product={p} channel="eyewear" />
           ))}
         </div>
       </section>
