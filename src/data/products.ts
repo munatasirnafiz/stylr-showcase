@@ -291,5 +291,94 @@ export const perfumes: Product[] = [
   },
 ];
 
+export type EyewearKind = "sunglasses" | "optical";
+export interface EyewearProduct extends Product {
+  kind: EyewearKind;
+}
+
+export const eyewear: EyewearProduct[] = [
+  {
+    ref: "REF · RB4323-52",
+    brand: "Ray-Ban",
+    name: "RB4323 Wayfarer — Polarised Collection",
+    specs: ["Acetate frame", "Polarised G-15 lens", "Sunglasses"],
+    image: "/products/rb4323-wayfarer.jpg",
+    kind: "sunglasses",
+  },
+  {
+    ref: "REF · RB3026-62",
+    brand: "Ray-Ban",
+    name: "RB3026 Aviator Large — Brown Gradient",
+    specs: ["Metal frame, 62mm", "B-15 UV400 gradient lens", "Sunglasses"],
+    image: "/products/rb3026-aviator.jpg",
+    kind: "sunglasses",
+  },
+  {
+    ref: "REF · RB3447-53",
+    brand: "Ray-Ban",
+    name: "RB3447 Round Metal — G-15",
+    specs: ["Metal round frame", "G-15 crystal green lens", "Sunglasses"],
+    image: "/products/rb3447-round.jpg",
+    kind: "sunglasses",
+  },
+  {
+    ref: "REF · RB4246-51",
+    brand: "Ray-Ban",
+    name: "RB4246 Clubround — Black/Gold",
+    specs: ["Acetate & metal browline", "G-15 lens", "Sunglasses"],
+    image: "/products/rb4246-clubround.jpg",
+    kind: "sunglasses",
+  },
+  {
+    ref: "REF · RB2140A-50",
+    brand: "Ray-Ban",
+    name: "RB2140 Original Wayfarer — Polarised",
+    specs: ["Acetate frame, 50mm", "Polarised lens", "Sunglasses"],
+    image: "/products/rb2140-wayfarer.jpg",
+    kind: "sunglasses",
+  },
+  {
+    ref: "REF · ESS-2263",
+    brand: "Essences Occhiali",
+    name: "2263 Rectangle — La Perfezione Italiana",
+    specs: ["Acetate frame, 53·18·145", "Blue-light ready", "Optical"],
+    image: "/products/essences-2263.jpg",
+    kind: "optical",
+  },
+  {
+    ref: "REF · ESS-DL9024",
+    brand: "Essences Occhiali",
+    name: "DL9024 Vintage Square",
+    specs: ["Acetate frame, 52·18·142", "Blue-light ready", "Optical"],
+    image: "/products/essences-dl9024.jpg",
+    kind: "optical",
+  },
+  {
+    ref: "REF · ESS-TR3305",
+    brand: "Essences Occhiali",
+    name: "TR3305 Classic Rectangle",
+    specs: ["TR90 lightweight frame, 52·17·145", "Blue-light ready", "Optical"],
+    image: "/products/essences-tr3305.jpg",
+    kind: "optical",
+  },
+  {
+    ref: "REF · ESS-R6084",
+    brand: "Essences Occhiali",
+    name: "R6084 Tortoise Wayfarer",
+    specs: ["Acetate frame, 53·20·150", "Demo lens, prescription-ready", "Optical"],
+    image: "/products/essences-r6084.jpg",
+    kind: "optical",
+  },
+  {
+    ref: "REF · ESS-HT6808",
+    brand: "Essences Occhiali",
+    name: "HT6808 Oversized Square",
+    specs: ["Acetate frame, 52·20·145", "Blue-light ready", "Optical"],
+    image: "/products/essences-ht6808.jpg",
+    kind: "optical",
+  },
+];
+
 export const featuredWatches = watches.slice(0, 4);
 export const featuredPerfumes = perfumes.slice(0, 4);
+export const featuredEyewear = eyewear.slice(0, 4);

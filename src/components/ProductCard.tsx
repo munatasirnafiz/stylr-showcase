@@ -14,7 +14,7 @@ export function ProductCard({
   channel,
 }: {
   product: Product;
-  channel: "watches" | "perfumes";
+  channel: "watches" | "perfumes" | "eyewear";
 }) {
   return (
     <article className="card-lux group flex flex-col hover:-translate-y-1 hover:shadow-[0_20px_50px_-25px_rgba(28,26,23,0.35)]">

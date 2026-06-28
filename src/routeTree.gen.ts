@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WatchesRouteImport } from './routes/watches'
 import { Route as PerfumesRouteImport } from './routes/perfumes'
+import { Route as EyewearRouteImport } from './routes/eyewear'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -23,6 +24,11 @@ const WatchesRoute = WatchesRouteImport.update({
 const PerfumesRoute = PerfumesRouteImport.update({
   id: '/perfumes',
   path: '/perfumes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EyewearRoute = EyewearRouteImport.update({
+  id: '/eyewear',
+  path: '/eyewear',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -45,6 +51,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/eyewear': typeof EyewearRoute
   '/perfumes': typeof PerfumesRoute
   '/watches': typeof WatchesRoute
 }
@@ -52,6 +59,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/eyewear': typeof EyewearRoute
   '/perfumes': typeof PerfumesRoute
   '/watches': typeof WatchesRoute
 }
@@ -60,21 +68,30 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/eyewear': typeof EyewearRoute
   '/perfumes': typeof PerfumesRoute
   '/watches': typeof WatchesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/contact' | '/perfumes' | '/watches'
+  fullPaths: '/' | '/about' | '/contact' | '/eyewear' | '/perfumes' | '/watches'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/contact' | '/perfumes' | '/watches'
-  id: '__root__' | '/' | '/about' | '/contact' | '/perfumes' | '/watches'
+  to: '/' | '/about' | '/contact' | '/eyewear' | '/perfumes' | '/watches'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/eyewear'
+    | '/perfumes'
+    | '/watches'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
+  EyewearRoute: typeof EyewearRoute
   PerfumesRoute: typeof PerfumesRoute
   WatchesRoute: typeof WatchesRoute
 }
@@ -93,6 +110,13 @@ declare module '@tanstack/react-router' {
       path: '/perfumes'
       fullPath: '/perfumes'
       preLoaderRoute: typeof PerfumesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/eyewear': {
+      id: '/eyewear'
+      path: '/eyewear'
+      fullPath: '/eyewear'
+      preLoaderRoute: typeof EyewearRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -123,9 +147,20 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
+  EyewearRoute: EyewearRoute,
   PerfumesRoute: PerfumesRoute,
   WatchesRoute: WatchesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
