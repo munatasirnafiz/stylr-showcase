@@ -10,7 +10,7 @@ type Slide = {
   title: React.ReactNode;
   copy: string;
   image: string;
-  to: "/watches" | "/perfumes" | "/eyewear";
+  to: "/watches" | "/perfumes" | "/sunglasses" | "/optical";
   cta: string;
 };
 
@@ -32,20 +32,20 @@ const SLIDES: Slide[] = [
     cta: "Enter the Parfumerie",
   },
   {
-    kicker: "Collection · 03",
-    title: <>Frames worth <span className="italic text-gold">being seen</span> in.</>,
-    copy: "Italian-made optical and polarised sun — selected for fit, finish and quiet confidence.",
-    image: "/products/essences-r6084.jpg",
-    to: "/eyewear",
-    cta: "View Eyewear",
-  },
-  {
     kicker: "Collection · 03 · Sun",
     title: <>Sun, <span className="italic text-gold">sealed</span> in acetate.</>,
-    copy: "Ray-Ban classics — Wayfarer, Aviator, Clubround. Polarised lenses, ready to wear.",
+    copy: "Ray-Ban classics — Wayfarer, Aviator, Round Metal, Clubround. Polarised lenses, ready to wear.",
     image: "/products/rb2140-wayfarer.jpg",
-    to: "/eyewear",
+    to: "/sunglasses",
     cta: "Shop Sunglasses",
+  },
+  {
+    kicker: "Collection · 04 · Optical",
+    title: <>Optical, <span className="italic text-gold">precisely</span> made.</>,
+    copy: "Italian titanium rimless and acetate frames — prescription-ready, hand-finished in Italy.",
+    image: "/products/essences-r6084.jpg",
+    to: "/optical",
+    cta: "View Optical Frames",
   },
 ];
 
