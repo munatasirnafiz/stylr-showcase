@@ -10,8 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WatchesRouteImport } from './routes/watches'
+import { Route as SunglassesRouteImport } from './routes/sunglasses'
 import { Route as PerfumesRouteImport } from './routes/perfumes'
-import { Route as EyewearRouteImport } from './routes/eyewear'
+import { Route as OpticalRouteImport } from './routes/optical'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -21,14 +22,19 @@ const WatchesRoute = WatchesRouteImport.update({
   path: '/watches',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SunglassesRoute = SunglassesRouteImport.update({
+  id: '/sunglasses',
+  path: '/sunglasses',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PerfumesRoute = PerfumesRouteImport.update({
   id: '/perfumes',
   path: '/perfumes',
   getParentRoute: () => rootRouteImport,
 } as any)
-const EyewearRoute = EyewearRouteImport.update({
-  id: '/eyewear',
-  path: '/eyewear',
+const OpticalRoute = OpticalRouteImport.update({
+  id: '/optical',
+  path: '/optical',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -51,16 +57,18 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/eyewear': typeof EyewearRoute
+  '/optical': typeof OpticalRoute
   '/perfumes': typeof PerfumesRoute
+  '/sunglasses': typeof SunglassesRoute
   '/watches': typeof WatchesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/eyewear': typeof EyewearRoute
+  '/optical': typeof OpticalRoute
   '/perfumes': typeof PerfumesRoute
+  '/sunglasses': typeof SunglassesRoute
   '/watches': typeof WatchesRoute
 }
 export interface FileRoutesById {
@@ -68,22 +76,38 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/eyewear': typeof EyewearRoute
+  '/optical': typeof OpticalRoute
   '/perfumes': typeof PerfumesRoute
+  '/sunglasses': typeof SunglassesRoute
   '/watches': typeof WatchesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/contact' | '/eyewear' | '/perfumes' | '/watches'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/optical'
+    | '/perfumes'
+    | '/sunglasses'
+    | '/watches'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/contact' | '/eyewear' | '/perfumes' | '/watches'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/optical'
+    | '/perfumes'
+    | '/sunglasses'
+    | '/watches'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/contact'
-    | '/eyewear'
+    | '/optical'
     | '/perfumes'
+    | '/sunglasses'
     | '/watches'
   fileRoutesById: FileRoutesById
 }
@@ -91,8 +115,9 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
-  EyewearRoute: typeof EyewearRoute
+  OpticalRoute: typeof OpticalRoute
   PerfumesRoute: typeof PerfumesRoute
+  SunglassesRoute: typeof SunglassesRoute
   WatchesRoute: typeof WatchesRoute
 }
 
@@ -105,6 +130,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WatchesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sunglasses': {
+      id: '/sunglasses'
+      path: '/sunglasses'
+      fullPath: '/sunglasses'
+      preLoaderRoute: typeof SunglassesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/perfumes': {
       id: '/perfumes'
       path: '/perfumes'
@@ -112,11 +144,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PerfumesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/eyewear': {
-      id: '/eyewear'
-      path: '/eyewear'
-      fullPath: '/eyewear'
-      preLoaderRoute: typeof EyewearRouteImport
+    '/optical': {
+      id: '/optical'
+      path: '/optical'
+      fullPath: '/optical'
+      preLoaderRoute: typeof OpticalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -147,8 +179,9 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
-  EyewearRoute: EyewearRoute,
+  OpticalRoute: OpticalRoute,
   PerfumesRoute: PerfumesRoute,
+  SunglassesRoute: SunglassesRoute,
   WatchesRoute: WatchesRoute,
 }
 export const routeTree = rootRouteImport
