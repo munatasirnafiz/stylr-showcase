@@ -102,49 +102,94 @@ function Home() {
         </div>
       </section>
 
-      {/* EYEWEAR BANNER */}
+      {/* SUNGLASSES BANNER */}
       <section className="bg-charcoal text-ivory">
         <div className="mx-auto max-w-7xl px-6 lg:px-10 py-24 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div>
-            <p className="kicker" style={{ color: "#C9A227" }}>Eyewear</p>
+            <p className="kicker" style={{ color: "#C9A227" }}>Sunglasses</p>
             <h2 className="font-serif text-4xl md:text-5xl mt-6 leading-tight">
-              Frames worth <span className="italic">being seen</span> in.
+              Sun, <span className="italic">sealed</span> in acetate.
             </h2>
             <p className="mt-6 text-ivory/70 text-lg leading-relaxed max-w-md">
-              Sun and optical — hand-selected for fit and finish. Polarised Ray-Ban classics alongside Italian-made acetate optical frames.
+              Aviator, Wayfarer, Round Metal, Clubround — polarised G-15 and gradient lenses, Ray-Ban classics, ready to wear.
             </p>
             <div className="mt-10">
               <Link
-                to="/eyewear"
+                to="/sunglasses"
                 className="inline-flex items-center gap-3 border border-gold text-gold hover:bg-gold hover:text-charcoal transition-colors px-8 py-4 text-xs uppercase tracking-[0.22em]"
               >
-                View the Eyewear Edit →
+                Shop Sunglasses →
               </Link>
             </div>
           </div>
           <div className="aspect-[4/5] overflow-hidden">
-            <img src="/products/rb4246-clubround.jpg" alt="Eyewear collection" className="h-full w-full object-cover" />
+            <img src="/products/rb4246-clubround.jpg" alt="Sunglasses collection" className="h-full w-full object-cover" />
           </div>
         </div>
       </section>
 
-      {/* FEATURED EYEWEAR */}
+      {/* FEATURED SUNGLASSES */}
       <section className="mx-auto max-w-7xl px-6 lg:px-10 py-24">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
           <div>
-            <SectionLabel>The Eyewear Edit</SectionLabel>
-            <h2 className="font-serif text-4xl md:text-5xl text-ink mt-5">Featured Eyewear</h2>
+            <SectionLabel>The Sun Edit</SectionLabel>
+            <h2 className="font-serif text-4xl md:text-5xl text-ink mt-5">Featured Sunglasses</h2>
           </div>
-          <Link to="/eyewear" className="text-xs uppercase tracking-[0.22em] text-gold-deep hover:text-gold border-b border-gold pb-1 self-start md:self-end">
+          <Link to="/sunglasses" className="text-xs uppercase tracking-[0.22em] text-gold-deep hover:text-gold border-b border-gold pb-1 self-start md:self-end">
             View all →
           </Link>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {featuredEyewear.map((p) => (
+          {featuredSunglasses.map((p) => (
             <ProductCard key={p.ref} product={p} channel="eyewear" />
           ))}
         </div>
       </section>
+
+      {/* OPTICAL BANNER */}
+      <section className="bg-charcoal text-ivory">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10 py-24 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div className="aspect-[4/5] overflow-hidden order-2 lg:order-1">
+            <img src="/products/essences-6020-rimless.jpg" alt="Optical frames" className="h-full w-full object-cover" />
+          </div>
+          <div className="order-1 lg:order-2">
+            <p className="kicker" style={{ color: "#C9A227" }}>Optical</p>
+            <h2 className="font-serif text-4xl md:text-5xl mt-6 leading-tight">
+              Optical, <span className="italic">precisely</span> made.
+            </h2>
+            <p className="mt-6 text-ivory/70 text-lg leading-relaxed max-w-md">
+              Italian titanium rimless and acetate frames — prescription-ready, blue-light options, hand-finished in Italy.
+            </p>
+            <div className="mt-10">
+              <Link
+                to="/optical"
+                className="inline-flex items-center gap-3 border border-gold text-gold hover:bg-gold hover:text-charcoal transition-colors px-8 py-4 text-xs uppercase tracking-[0.22em]"
+              >
+                View Optical Frames →
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FEATURED OPTICAL */}
+      <section className="mx-auto max-w-7xl px-6 lg:px-10 py-24">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
+          <div>
+            <SectionLabel>The Optical Edit</SectionLabel>
+            <h2 className="font-serif text-4xl md:text-5xl text-ink mt-5">Featured Optical</h2>
+          </div>
+          <Link to="/optical" className="text-xs uppercase tracking-[0.22em] text-gold-deep hover:text-gold border-b border-gold pb-1 self-start md:self-end">
+            View all →
+          </Link>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          {featuredOptical.map((p) => (
+            <ProductCard key={p.ref} product={p} channel="eyewear" />
+          ))}
+        </div>
+      </section>
+
 
       <ClosingCTA />
     </>
