@@ -297,10 +297,52 @@ export interface EyewearProduct extends Product {
 }
 
 export const eyewear: EyewearProduct[] = [
+  // === SUNGLASSES — new uploads ===
+  {
+    ref: "REF · RB3025-58 / 2F",
+    brand: "Ray-Ban",
+    name: "RB3025 Aviator — Sunset Gradient Collection",
+    specs: ["Metal frame, 58mm", "Gradient mirrored lens, UV400", "Sunglasses"],
+    image: "/products/rb3025-aviator-gradient.jpg",
+    kind: "sunglasses",
+  },
+  {
+    ref: "REF · RB3025-58 / 32",
+    brand: "Ray-Ban",
+    name: "RB3025 Aviator — Blue Gradient Collection",
+    specs: ["Metal frame, 58mm", "Blue-grey gradient lens, UV400", "Sunglasses"],
+    image: "/products/rb3025-aviator-blue.jpg",
+    kind: "sunglasses",
+  },
+  {
+    ref: "REF · RB3447-53",
+    brand: "Ray-Ban",
+    name: "RB3447 Round Metal — Heritage Collection",
+    specs: ["Metal round frame, 53mm", "G-15 / gradient lens options", "Sunglasses"],
+    image: "/products/rb3447-round-collection.jpg",
+    kind: "sunglasses",
+  },
+  {
+    ref: "REF · RB2140-50",
+    brand: "Ray-Ban",
+    name: "RB2140 Original Wayfarer — Polarised Set",
+    specs: ["Acetate frame, 50mm", "Polarised G-15 lens", "Sunglasses"],
+    image: "/products/rb2140-wayfarer-collection.jpg",
+    kind: "sunglasses",
+  },
+  {
+    ref: "REF · RB8301-59",
+    brand: "Ray-Ban",
+    name: "RB8301 Tech — Carbon Fibre Aviator",
+    specs: ["Carbon fibre & titanium, 59mm", "Polarised lens options", "Sunglasses"],
+    image: "/products/rb8301-tech-carbon.jpg",
+    kind: "sunglasses",
+  },
+  // === SUNGLASSES — earlier uploads ===
   {
     ref: "REF · RB4323-52",
     brand: "Ray-Ban",
-    name: "RB4323 Wayfarer — Polarised Collection",
+    name: "RB4323 Wayfarer — Polarised",
     specs: ["Acetate frame", "Polarised G-15 lens", "Sunglasses"],
     image: "/products/rb4323-wayfarer.jpg",
     kind: "sunglasses",
@@ -314,7 +356,7 @@ export const eyewear: EyewearProduct[] = [
     kind: "sunglasses",
   },
   {
-    ref: "REF · RB3447-53",
+    ref: "REF · RB3447-53A",
     brand: "Ray-Ban",
     name: "RB3447 Round Metal — G-15",
     specs: ["Metal round frame", "G-15 crystal green lens", "Sunglasses"],
@@ -337,6 +379,48 @@ export const eyewear: EyewearProduct[] = [
     image: "/products/rb2140-wayfarer.jpg",
     kind: "sunglasses",
   },
+  // === OPTICAL — new uploads ===
+  {
+    ref: "REF · RB8101-52",
+    brand: "Ray-Ban",
+    name: "RB8101 Semi-Rimless — Made in Italy",
+    specs: ["Titanium semi-rimless, 52·16·140", "Prescription-ready, blue-light option", "Optical"],
+    image: "/products/rb8101-semi-rimless.jpg",
+    kind: "optical",
+  },
+  {
+    ref: "REF · RB3681V-50",
+    brand: "Ray-Ban",
+    name: "RB3681V Round Optical — Metal",
+    specs: ["Metal round frame, 50·21·140", "Prescription-ready", "Optical"],
+    image: "/products/rb3681-round-optical.jpg",
+    kind: "optical",
+  },
+  {
+    ref: "REF · ESS-6020",
+    brand: "Essences Occhiali",
+    name: "6020 Rimless Rectangle — Italian Titanium",
+    specs: ["Rimless titanium, 56·18·140", "Lightweight, prescription-ready", "Optical"],
+    image: "/products/essences-6020-rimless.jpg",
+    kind: "optical",
+  },
+  {
+    ref: "REF · ESS-6002",
+    brand: "Essences Occhiali",
+    name: "6002 Rimless Oval — Italian Titanium",
+    specs: ["Rimless titanium, 52·18·140", "Lightweight, prescription-ready", "Optical"],
+    image: "/products/essences-6002-rimless.jpg",
+    kind: "optical",
+  },
+  {
+    ref: "REF · ESS-DT52021",
+    brand: "Essences Occhiali",
+    name: "DT52021 Crystal Rectangle — La Perfezione Italiana",
+    specs: ["Acetate frame, 49·16·140", "Blue-light ready", "Optical"],
+    image: "/products/essences-dt52021.jpg",
+    kind: "optical",
+  },
+  // === OPTICAL — earlier uploads ===
   {
     ref: "REF · ESS-2263",
     brand: "Essences Occhiali",
@@ -379,6 +463,12 @@ export const eyewear: EyewearProduct[] = [
   },
 ];
 
+export const sunglasses = eyewear.filter((e) => e.kind === "sunglasses");
+export const optical = eyewear.filter((e) => e.kind === "optical");
+
 export const featuredWatches = watches.slice(0, 4);
 export const featuredPerfumes = perfumes.slice(0, 4);
-export const featuredEyewear = eyewear.slice(0, 4);
+export const featuredSunglasses = sunglasses.slice(0, 4);
+export const featuredOptical = optical.slice(0, 4);
+export const featuredEyewear = [...sunglasses.slice(0, 2), ...optical.slice(0, 2)];
+
