@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ProductCard } from "@/components/ProductCard";
 import { SectionLabel, ClosingCTA } from "@/components/ui-bits";
 import { HeroCarousel } from "@/components/HeroCarousel";
-import { featuredWatches, featuredPerfumes, featuredEyewear } from "@/data/products";
+import { featuredWatches, featuredPerfumes, featuredSunglasses, featuredOptical } from "@/data/products";
 import heroPerfume from "@/assets/hero-perfume.jpg";
 
 export const Route = createFileRoute("/")({
