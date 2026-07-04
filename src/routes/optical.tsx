@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ProductCard } from "@/components/ProductCard";
 import { SectionLabel, ClosingCTA } from "@/components/ui-bits";
-import { optical } from "@/data/products";
+import { ProductGridSkeleton, ProductGridEmpty } from "@/components/ProductGridState";
+import { useOptical } from "@/hooks/useProducts";
 
 export const Route = createFileRoute("/optical")({
   head: () => ({
@@ -16,6 +17,8 @@ export const Route = createFileRoute("/optical")({
 });
 
 function OpticalPage() {
+  const { data: optical, isLoading, isError } = useOptical();
+
   return (
     <>
       <section className="relative bg-charcoal text-ivory">
@@ -33,12 +36,18 @@ function OpticalPage() {
       <section className="mx-auto max-w-7xl px-6 lg:px-10 py-20">
         <div className="mb-10">
           <SectionLabel>The Optical Edit</SectionLabel>
-          <h2 className="font-serif text-3xl text-ink mt-4">{optical.length} optical frames, currently in stock.</h2>
+          <h2 className="font-serif text-3xl text-ink mt-4">
+            {isLoading ? "Loading the optical edit…" : `${optical?.length ?? 0} optical frames, currently in stock.`}
+          </h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
-          {optical.map((p) => (
-            <ProductCard key={p.ref} product={p} channel="eyewear" />
-          ))}
+          {isLoading ? (
+            <ProductGridSkeleton count={8} />
+          ) : isError || !optical?.length ? (
+            <ProductGridEmpty channel="eyewear" label="No optical frames in stock right now." />
+          ) : (
+            optical.map((p) => <ProductCard key={p.ref} product={p} channel="eyewear" />)
+          )}
         </div>
       </section>
 

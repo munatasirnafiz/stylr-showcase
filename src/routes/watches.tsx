@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ProductCard } from "@/components/ProductCard";
 import { SectionLabel, ClosingCTA } from "@/components/ui-bits";
-import { watches } from "@/data/products";
+import { ProductGridSkeleton, ProductGridEmpty } from "@/components/ProductGridState";
+import { useWatches } from "@/hooks/useProducts";
 import heroWatches from "@/assets/hero-watches.jpg";
 
 export const Route = createFileRoute("/watches")({
@@ -17,6 +18,8 @@ export const Route = createFileRoute("/watches")({
 });
 
 function WatchesPage() {
+  const { data: watches, isLoading, isError } = useWatches();
+
   return (
     <>
       <section className="relative bg-charcoal text-ivory">
@@ -37,12 +40,18 @@ function WatchesPage() {
       <section className="mx-auto max-w-7xl px-6 lg:px-10 py-20">
         <div className="mb-12">
           <SectionLabel>The Vault</SectionLabel>
-          <h2 className="font-serif text-3xl text-ink mt-4">{watches.length} pieces, in residence.</h2>
+          <h2 className="font-serif text-3xl text-ink mt-4">
+            {isLoading ? "Loading the vault…" : `${watches?.length ?? 0} pieces, in residence.`}
+          </h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
-          {watches.map((p) => (
-            <ProductCard key={p.ref} product={p} channel="watches" />
-          ))}
+          {isLoading ? (
+            <ProductGridSkeleton count={8} />
+          ) : isError || !watches?.length ? (
+            <ProductGridEmpty channel="watches" label="No timepieces in residence right now." />
+          ) : (
+            watches.map((p) => <ProductCard key={p.ref} product={p} channel="watches" />)
+          )}
         </div>
       </section>
 
