@@ -53,3 +53,75 @@ export const FEATURED_SUNGLASSES_QUERY = `*[_type == "sunglasses" && featured ==
 
 export const ALL_OPTICAL_QUERY = `*[_type == "optical"] | order(_createdAt asc){ ${OPTICAL_FIELDS} }`;
 export const FEATURED_OPTICAL_QUERY = `*[_type == "optical" && featured == true] | order(_createdAt asc)[0...4]{ ${OPTICAL_FIELDS} }`;
+
+export interface SanityNavLink {
+  label: string;
+  path: string;
+}
+
+export interface SanityPhoneEntry {
+  channel: "watches" | "perfumes" | "eyewear";
+  phone: string;
+  waNumber: string;
+}
+
+export interface SanitySiteSettings {
+  brandName: string;
+  brandSuffix: string;
+  headerNavLinks: SanityNavLink[];
+  footerNavLinks: SanityNavLink[];
+  footerBlurb: string;
+  footerTagline: string;
+  footerLocationTag: string;
+  copyrightSuffix: string;
+  addressLines: string[];
+  delivery: string;
+  email: string;
+  businessHours: string;
+  phones: SanityPhoneEntry[];
+}
+
+export interface SanityHeroSlide {
+  kicker: string;
+  headingPrefix: string;
+  headingEmphasis?: string;
+  headingSuffix?: string;
+  copy: string;
+  image: SanityImage;
+  ctaLabel: string;
+  ctaLink: string;
+}
+
+export interface SanityTrustPoint {
+  title: string;
+  description: string;
+}
+
+export interface SanityPromoBanner {
+  kicker: string;
+  headingPrefix: string;
+  headingEmphasis?: string;
+  headingSuffix?: string;
+  paragraph: string;
+  image: SanityImage;
+  imagePosition: "left" | "right";
+  ctaLabel: string;
+  ctaLink: string;
+}
+
+export interface SanityHomepage {
+  heroSlides: SanityHeroSlide[];
+  trustPoints: SanityTrustPoint[];
+  promoBanners: SanityPromoBanner[];
+}
+
+const SITE_SETTINGS_FIELDS = `
+  brandName, brandSuffix, headerNavLinks, footerNavLinks, footerBlurb, footerTagline,
+  footerLocationTag, copyrightSuffix, addressLines, delivery, email, businessHours, phones
+`;
+
+export const SITE_SETTINGS_QUERY = `*[_id == "siteSettings"][0]{ ${SITE_SETTINGS_FIELDS} }`;
+
+const HOMEPAGE_FIELDS = `heroSlides, trustPoints, promoBanners`;
+
+export const HOMEPAGE_QUERY = `*[_id == "homepage"][0]{ ${HOMEPAGE_FIELDS} }`;

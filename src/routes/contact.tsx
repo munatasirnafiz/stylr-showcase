@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SectionLabel } from "@/components/ui-bits";
-import { CONTACT, inquiryLink } from "@/data/contact";
+import { useSiteSettings, useInquiryLink, FALLBACK_SITE_SETTINGS } from "@/hooks/useSiteContent";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -14,14 +14,20 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
 });
 
-const lines = [
-  { label: "Watches Line", phone: CONTACT.watches.phone, wa: CONTACT.watches.wa, note: "Direct line for timepiece curators." },
-  { label: "Perfumes Line", phone: CONTACT.perfumes.phone, wa: CONTACT.perfumes.wa, note: "Direct line for the parfumerie atelier." },
-];
-
-const mapQuery = encodeURIComponent("KAKOLI Apartment 562, Middle Monipur, Mirpur-2, Dhaka, Bangladesh");
-
 function ContactPage() {
+  const { data } = useSiteSettings();
+  const settings = data ?? FALLBACK_SITE_SETTINGS;
+  const startInquiryHref = useInquiryLink("watches");
+
+  const watchesPhone = settings.phones.find((p) => p.channel === "watches");
+  const perfumesPhone = settings.phones.find((p) => p.channel === "perfumes");
+  const lines = [
+    { label: "Watches Line", phone: watchesPhone?.phone ?? "", wa: `https://wa.me/${watchesPhone?.waNumber ?? ""}`, note: "Direct line for timepiece curators." },
+    { label: "Perfumes Line", phone: perfumesPhone?.phone ?? "", wa: `https://wa.me/${perfumesPhone?.waNumber ?? ""}`, note: "Direct line for the parfumerie atelier." },
+  ];
+
+  const mapQuery = encodeURIComponent(settings.addressLines.join(", "));
+
   return (
     <>
       <section className="mx-auto max-w-7xl px-6 lg:px-10 py-24 lg:py-28">
@@ -34,7 +40,7 @@ function ContactPage() {
         </p>
         <div className="mt-10">
           <a
-            href={inquiryLink("watches")}
+            href={startInquiryHref}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 bg-charcoal text-ivory hover:bg-ink transition-colors px-8 py-4 text-xs uppercase tracking-[0.22em] font-medium"
@@ -50,17 +56,20 @@ function ContactPage() {
             <SectionLabel>Atelier</SectionLabel>
             <h2 className="font-serif text-2xl text-ink mt-4">Mirpur-2, Dhaka</h2>
             <address className="not-italic mt-4 text-muted-ink leading-relaxed">
-              KAKOLI Apartment 562<br />
-              Middle Monipur, Mirpur-2<br />
-              Dhaka, Bangladesh
+              {settings.addressLines.map((line, i) => (
+                <span key={i}>
+                  {line}
+                  {i < settings.addressLines.length - 1 && <br />}
+                </span>
+              ))}
             </address>
             <p className="mt-6 text-muted-ink">
               <span className="eyebrow block mb-1">Email</span>
-              <a href={`mailto:${CONTACT.email}`} className="text-ink hover:text-gold transition-colors">{CONTACT.email}</a>
+              <a href={`mailto:${settings.email}`} className="text-ink hover:text-gold transition-colors">{settings.email}</a>
             </p>
             <p className="mt-6 text-muted-ink">
               <span className="eyebrow block mb-1">Hours</span>
-              By appointment only · 11:00 – 20:00 BST
+              {settings.businessHours}
             </p>
           </div>
           <div className="lg:col-span-2 space-y-5">
