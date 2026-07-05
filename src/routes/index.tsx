@@ -2,7 +2,13 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ProductCard } from "@/components/ProductCard";
 import { SectionLabel, ClosingCTA } from "@/components/ui-bits";
 import { HeroCarousel } from "@/components/HeroCarousel";
-import { featuredWatches, featuredPerfumes, featuredSunglasses, featuredOptical } from "@/data/products";
+import { ProductGridSkeleton, ProductGridEmpty } from "@/components/ProductGridState";
+import {
+  useFeaturedWatches,
+  useFeaturedPerfumes,
+  useFeaturedSunglasses,
+  useFeaturedOptical,
+} from "@/hooks/useProducts";
 import heroPerfume from "@/assets/hero-perfume.jpg";
 
 export const Route = createFileRoute("/")({
@@ -18,6 +24,11 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  const { data: featuredWatches, isLoading: watchesLoading, isError: watchesError } = useFeaturedWatches();
+  const { data: featuredPerfumes, isLoading: perfumesLoading, isError: perfumesError } = useFeaturedPerfumes();
+  const { data: featuredSunglasses, isLoading: sunglassesLoading, isError: sunglassesError } = useFeaturedSunglasses();
+  const { data: featuredOptical, isLoading: opticalLoading, isError: opticalError } = useFeaturedOptical();
+
   return (
     <>
       <HeroCarousel />
@@ -52,9 +63,13 @@ function Home() {
           </Link>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {featuredWatches.map((p) => (
-            <ProductCard key={p.ref} product={p} channel="watches" />
-          ))}
+          {watchesLoading ? (
+            <ProductGridSkeleton count={4} />
+          ) : watchesError || !featuredWatches?.length ? (
+            <ProductGridEmpty channel="watches" label="Featured timepieces are being curated." />
+          ) : (
+            featuredWatches.map((p) => <ProductCard key={p.ref} product={p} channel="watches" />)
+          )}
         </div>
       </section>
 
@@ -96,9 +111,13 @@ function Home() {
           </Link>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {featuredPerfumes.map((p) => (
-            <ProductCard key={p.ref} product={p} channel="perfumes" />
-          ))}
+          {perfumesLoading ? (
+            <ProductGridSkeleton count={4} />
+          ) : perfumesError || !featuredPerfumes?.length ? (
+            <ProductGridEmpty channel="perfumes" label="Signature perfumes are being curated." />
+          ) : (
+            featuredPerfumes.map((p) => <ProductCard key={p.ref} product={p} channel="perfumes" />)
+          )}
         </div>
       </section>
 
@@ -140,9 +159,13 @@ function Home() {
           </Link>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {featuredSunglasses.map((p) => (
-            <ProductCard key={p.ref} product={p} channel="eyewear" />
-          ))}
+          {sunglassesLoading ? (
+            <ProductGridSkeleton count={4} />
+          ) : sunglassesError || !featuredSunglasses?.length ? (
+            <ProductGridEmpty channel="eyewear" label="Featured sunglasses are being curated." />
+          ) : (
+            featuredSunglasses.map((p) => <ProductCard key={p.ref} product={p} channel="eyewear" />)
+          )}
         </div>
       </section>
 
@@ -184,9 +207,13 @@ function Home() {
           </Link>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {featuredOptical.map((p) => (
-            <ProductCard key={p.ref} product={p} channel="eyewear" />
-          ))}
+          {opticalLoading ? (
+            <ProductGridSkeleton count={4} />
+          ) : opticalError || !featuredOptical?.length ? (
+            <ProductGridEmpty channel="eyewear" label="Featured optical frames are being curated." />
+          ) : (
+            featuredOptical.map((p) => <ProductCard key={p.ref} product={p} channel="eyewear" />)
+          )}
         </div>
       </section>
 

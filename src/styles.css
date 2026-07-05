@@ -73,17 +73,23 @@
 }
 
 @layer base {
-  * {
+  *:not(#sanity-studio-root, #sanity-studio-root *) {
     border-color: var(--color-border);
   }
   html { scroll-behavior: smooth; }
-  body {
+  body:not(:has(#sanity-studio-root)) {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3, h4, .font-serif { font-family: var(--font-serif); }
+  h1:not(#sanity-studio-root *),
+  h2:not(#sanity-studio-root *),
+  h3:not(#sanity-studio-root *),
+  h4:not(#sanity-studio-root *),
+  .font-serif:not(#sanity-studio-root *) {
+    font-family: var(--font-serif);
+  }
 }
 
 @utility kicker {
