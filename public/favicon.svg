@@ -1,0 +1,9 @@
+<svg width="34" height="38" viewBox="0 0 34 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M11 9 V6 a6 6 0 0 1 12 0 V9" stroke="#1C1A17" stroke-width="1.8" fill="none" stroke-linecap="round" />
+  <path d="M5 9 H29 L27 35 H7 Z" fill="#1C1A17" />
+  <text x="17" y="26" text-anchor="middle" font-family="Georgia, 'Playfair Display', serif" font-size="14" font-style="italic" fill="#C9A227" font-weight="600">S</text>
+  <g transform="translate(22 4) rotate(20)">
+    <path d="M0 0 L7 0 L9 3 L7 6 L0 6 Z" fill="#C9A227" />
+    <circle cx="6.5" cy="3" r="0.7" fill="#1C1A17" />
+  </g>
+</svg>
