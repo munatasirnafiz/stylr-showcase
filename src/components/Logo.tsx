@@ -1,5 +1,10 @@
+import { useSiteSettings, FALLBACK_SITE_SETTINGS } from "@/hooks/useSiteContent";
+
 export function Logo({ light = false }: { light?: boolean }) {
   const ink = light ? "#F7F3EC" : "#1C1A17";
+  const { data } = useSiteSettings();
+  const brandName = data?.brandName ?? FALLBACK_SITE_SETTINGS.brandName;
+  const brandSuffix = data?.brandSuffix ?? FALLBACK_SITE_SETTINGS.brandSuffix;
   return (
     <div className="flex items-center gap-2.5">
       <svg width="34" height="38" viewBox="0 0 34 38" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
@@ -16,8 +21,8 @@ export function Logo({ light = false }: { light?: boolean }) {
         </g>
       </svg>
       <div className="flex items-baseline">
-        <span className="font-serif text-xl tracking-tight" style={{ color: ink }}>Stylr</span>
-        <span className="font-serif text-xl tracking-tight" style={{ color: "#C9A227" }}>.store</span>
+        <span className="font-serif text-xl tracking-tight" style={{ color: ink }}>{brandName}</span>
+        <span className="font-serif text-xl tracking-tight" style={{ color: "#C9A227" }}>{brandSuffix}</span>
       </div>
     </div>
   );

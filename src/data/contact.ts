@@ -1,33 +1,12 @@
-export const CONTACT = {
-  address: "KAKOLI Apartment 562, Middle Monipur, Mirpur-2, Dhaka, Bangladesh",
-  email: "hello@stylr.store",
-  delivery: "Bangladesh wide — cash on delivery available in Dhaka.",
-  phones: [
-    { phone: "+880 1770 484702", wa: "https://wa.me/8801770484702", waNumber: "8801770484702" },
-    { phone: "+880 1711 885606", wa: "https://wa.me/8801711885606", waNumber: "8801711885606" },
-    { phone: "+880 1521 430196", wa: "https://wa.me/8801521430196", waNumber: "8801521430196" },
-  ],
-  watches: {
-    phone: "+880 1711 885606",
-    wa: "https://wa.me/8801711885606",
-    waNumber: "8801711885606",
-  },
-  perfumes: {
-    phone: "+880 1521 430196",
-    wa: "https://wa.me/8801521430196",
-    waNumber: "8801521430196",
-  },
-  eyewear: {
-    phone: "+880 1770 484702",
-    wa: "https://wa.me/8801770484702",
-    waNumber: "8801770484702",
-  },
-} as const;
-
 export type InquiryChannel = "watches" | "perfumes" | "eyewear";
 
-export function inquiryLink(channel: InquiryChannel = "watches", productName?: string) {
-  const number = CONTACT[channel].waNumber;
+export function buildInquiryLink(
+  phones: { channel: InquiryChannel; waNumber: string }[],
+  channel: InquiryChannel = "watches",
+  productName?: string,
+) {
+  const entry = phones.find((p) => p.channel === channel);
+  const number = entry?.waNumber ?? "";
   const msg = productName
     ? `Hello Stylr.store — I'd like to inquire about: ${productName}.`
     : `Hello Stylr.store — I'd like to start a private inquiry.`;

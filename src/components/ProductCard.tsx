@@ -1,4 +1,4 @@
-import { inquiryLink } from "@/data/contact";
+import { useInquiryLink } from "@/hooks/useSiteContent";
 
 export interface Product {
   ref: string;
@@ -16,6 +16,7 @@ export function ProductCard({
   product: Product;
   channel: "watches" | "perfumes" | "eyewear";
 }) {
+  const href = useInquiryLink(channel, product.name);
   return (
     <article className="card-lux group flex flex-col hover:-translate-y-1 hover:shadow-[0_20px_50px_-25px_rgba(28,26,23,0.35)]">
       <div className="relative aspect-[4/5] overflow-hidden bg-ivory">
@@ -51,7 +52,7 @@ export function ProductCard({
           </div>
         )}
         <a
-          href={inquiryLink(channel, product.name)}
+          href={href}
           target="_blank"
           rel="noopener noreferrer"
           className="mt-6 inline-flex items-center justify-center gap-2 border border-gold text-gold-deep hover:bg-gold hover:text-charcoal transition-colors px-5 py-2.5 text-xs uppercase tracking-[0.22em] font-medium"

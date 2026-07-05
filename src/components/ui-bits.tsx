@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { inquiryLink } from "@/data/contact";
+import { useInquiryLink } from "@/hooks/useSiteContent";
 
 export function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
@@ -44,6 +44,7 @@ export function CTAButton({
 }
 
 export function ClosingCTA() {
+  const href = useInquiryLink("watches");
   return (
     <section className="bg-charcoal text-ivory">
       <div className="mx-auto max-w-4xl px-6 py-24 text-center">
@@ -56,7 +57,7 @@ export function ClosingCTA() {
         </p>
         <div className="mt-10">
           <a
-            href={inquiryLink("watches")}
+            href={href}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 border border-gold text-gold hover:bg-gold hover:text-charcoal transition-colors px-8 py-4 text-xs uppercase tracking-[0.22em] font-medium"

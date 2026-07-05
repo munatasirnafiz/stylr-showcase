@@ -9,7 +9,8 @@ import {
   useFeaturedSunglasses,
   useFeaturedOptical,
 } from "@/hooks/useProducts";
-import heroPerfume from "@/assets/hero-perfume.jpg";
+import { useHomepage, FALLBACK_HOMEPAGE } from "@/hooks/useSiteContent";
+import type { PromoBannerView } from "@/lib/adapters";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -23,11 +24,42 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
+function renderBanner(b: PromoBannerView) {
+  const imageCol = b.imagePosition === "left" ? "order-2 lg:order-1" : "";
+  const copyCol = b.imagePosition === "left" ? "order-1 lg:order-2" : "";
+  return (
+    <div className="mx-auto max-w-7xl px-6 lg:px-10 py-24 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div className={`aspect-[4/5] overflow-hidden ${imageCol}`}>
+        <img src={b.imageUrl} alt="" className="h-full w-full object-cover" />
+      </div>
+      <div className={copyCol}>
+        <p className="kicker" style={{ color: "#C9A227" }}>{b.kicker}</p>
+        <h2 className="font-serif text-4xl md:text-5xl mt-6 leading-tight">
+          {b.headingPrefix}
+          {b.headingEmphasis && <span className="italic">{b.headingEmphasis}</span>}
+          {b.headingSuffix}
+        </h2>
+        <p className="mt-6 text-ivory/70 text-lg leading-relaxed max-w-md">{b.paragraph}</p>
+        <div className="mt-10">
+          <Link
+            to={b.ctaLink}
+            className="inline-flex items-center gap-3 border border-gold text-gold hover:bg-gold hover:text-charcoal transition-colors px-8 py-4 text-xs uppercase tracking-[0.22em]"
+          >
+            {b.ctaLabel} →
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function Home() {
   const { data: featuredWatches, isLoading: watchesLoading, isError: watchesError } = useFeaturedWatches();
   const { data: featuredPerfumes, isLoading: perfumesLoading, isError: perfumesError } = useFeaturedPerfumes();
   const { data: featuredSunglasses, isLoading: sunglassesLoading, isError: sunglassesError } = useFeaturedSunglasses();
   const { data: featuredOptical, isLoading: opticalLoading, isError: opticalError } = useFeaturedOptical();
+  const { data: homepage } = useHomepage();
+  const { trustPoints, promoBanners } = homepage ?? FALLBACK_HOMEPAGE;
 
   return (
     <>
@@ -36,16 +68,12 @@ function Home() {
       {/* TRUST STRIP */}
       <section className="border-y border-hairline bg-surface">
         <div className="mx-auto max-w-7xl px-6 lg:px-10 py-16 grid md:grid-cols-3 gap-12">
-          {[
-            { n: "01", t: "Hand-Selected & Authenticated", d: "Every piece is sourced, inspected and verified by our curators before it reaches you." },
-            { n: "02", t: "Private WhatsApp Inquiry", d: "No carts, no checkouts. Each inquiry is answered personally by a single dedicated curator." },
-            { n: "03", t: "Bangladesh-Wide Delivery", d: "Discreetly packaged and delivered nationwide from Dhaka. Cash on delivery available in Dhaka." },
-          ].map((b) => (
-            <div key={b.n}>
-              <span className="font-serif text-3xl text-gold">{b.n}</span>
+          {trustPoints.map((t, i) => (
+            <div key={i}>
+              <span className="font-serif text-3xl text-gold">{String(i + 1).padStart(2, "0")}</span>
               <span className="gold-rule ml-4 align-middle" />
-              <h3 className="font-serif text-xl text-ink mt-5">{b.t}</h3>
-              <p className="text-muted-ink text-sm mt-3 leading-relaxed">{b.d}</p>
+              <h3 className="font-serif text-xl text-ink mt-5">{t.title}</h3>
+              <p className="text-muted-ink text-sm mt-3 leading-relaxed">{t.description}</p>
             </div>
           ))}
         </div>
@@ -75,28 +103,7 @@ function Home() {
 
       {/* PARFUMERIE BANNER */}
       <section className="bg-charcoal text-ivory">
-        <div className="mx-auto max-w-7xl px-6 lg:px-10 py-24 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <div className="aspect-[4/5] overflow-hidden order-2 lg:order-1">
-            <img src={heroPerfume} alt="Niche perfumery" className="h-full w-full object-cover" />
-          </div>
-          <div className="order-1 lg:order-2">
-            <p className="kicker" style={{ color: "#C9A227" }}>Parfumerie</p>
-            <h2 className="font-serif text-4xl md:text-5xl mt-6 leading-tight">
-              Rare materials, <span className="italic">quietly</span> bottled.
-            </h2>
-            <p className="mt-6 text-ivory/70 text-lg leading-relaxed max-w-md">
-              From Mysore sandalwood to grey ambergris, our parfumerie favours scents composed with patience — house exclusives, archive editions, and discontinued favourites.
-            </p>
-            <div className="mt-10">
-              <Link
-                to="/perfumes"
-                className="inline-flex items-center gap-3 border border-gold text-gold hover:bg-gold hover:text-charcoal transition-colors px-8 py-4 text-xs uppercase tracking-[0.22em]"
-              >
-                Enter the Parfumerie →
-              </Link>
-            </div>
-          </div>
-        </div>
+        {renderBanner(promoBanners[0])}
       </section>
 
       {/* FEATURED PERFUMES */}
@@ -123,28 +130,7 @@ function Home() {
 
       {/* SUNGLASSES BANNER */}
       <section className="bg-charcoal text-ivory">
-        <div className="mx-auto max-w-7xl px-6 lg:px-10 py-24 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <div>
-            <p className="kicker" style={{ color: "#C9A227" }}>Sunglasses</p>
-            <h2 className="font-serif text-4xl md:text-5xl mt-6 leading-tight">
-              Sun, <span className="italic">sealed</span> in acetate.
-            </h2>
-            <p className="mt-6 text-ivory/70 text-lg leading-relaxed max-w-md">
-              Aviator, Wayfarer, Round Metal, Clubround — polarised G-15 and gradient lenses, Ray-Ban classics, ready to wear.
-            </p>
-            <div className="mt-10">
-              <Link
-                to="/sunglasses"
-                className="inline-flex items-center gap-3 border border-gold text-gold hover:bg-gold hover:text-charcoal transition-colors px-8 py-4 text-xs uppercase tracking-[0.22em]"
-              >
-                Shop Sunglasses →
-              </Link>
-            </div>
-          </div>
-          <div className="aspect-[4/5] overflow-hidden">
-            <img src="/products/rb4246-clubround.jpg" alt="Sunglasses collection" className="h-full w-full object-cover" />
-          </div>
-        </div>
+        {renderBanner(promoBanners[1])}
       </section>
 
       {/* FEATURED SUNGLASSES */}
@@ -171,28 +157,7 @@ function Home() {
 
       {/* OPTICAL BANNER */}
       <section className="bg-charcoal text-ivory">
-        <div className="mx-auto max-w-7xl px-6 lg:px-10 py-24 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <div className="aspect-[4/5] overflow-hidden order-2 lg:order-1">
-            <img src="/products/essences-6020-rimless.jpg" alt="Optical frames" className="h-full w-full object-cover" />
-          </div>
-          <div className="order-1 lg:order-2">
-            <p className="kicker" style={{ color: "#C9A227" }}>Optical</p>
-            <h2 className="font-serif text-4xl md:text-5xl mt-6 leading-tight">
-              Optical, <span className="italic">precisely</span> made.
-            </h2>
-            <p className="mt-6 text-ivory/70 text-lg leading-relaxed max-w-md">
-              Italian titanium rimless and acetate frames — prescription-ready, blue-light options, hand-finished in Italy.
-            </p>
-            <div className="mt-10">
-              <Link
-                to="/optical"
-                className="inline-flex items-center gap-3 border border-gold text-gold hover:bg-gold hover:text-charcoal transition-colors px-8 py-4 text-xs uppercase tracking-[0.22em]"
-              >
-                View Optical Frames →
-              </Link>
-            </div>
-          </div>
-        </div>
+        {renderBanner(promoBanners[2])}
       </section>
 
       {/* FEATURED OPTICAL */}

@@ -2,19 +2,12 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
-
-const links = [
-  { to: "/", label: "Home" },
-  { to: "/watches", label: "Watches" },
-  { to: "/perfumes", label: "Perfumes" },
-  { to: "/sunglasses", label: "Sunglasses" },
-  { to: "/optical", label: "Optical" },
-  //{ to: "/about", label: "About" },
-  { to: "/contact", label: "Contact" },
-] as const;
+import { useSiteSettings, FALLBACK_SITE_SETTINGS } from "@/hooks/useSiteContent";
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const { data } = useSiteSettings();
+  const links = data?.headerNavLinks ?? FALLBACK_SITE_SETTINGS.headerNavLinks;
   return (
     <header className="sticky top-0 z-50 bg-background/85 backdrop-blur border-b border-hairline">
       <div className="mx-auto max-w-7xl px-6 lg:px-10 h-20 flex items-center justify-between">
@@ -24,11 +17,11 @@ export function Header() {
         <nav className="hidden md:flex items-center gap-9">
           {links.map((l) => (
             <Link
-              key={l.to}
-              to={l.to}
+              key={l.path}
+              to={l.path}
               className="nav-link group"
               activeProps={{ className: "nav-link nav-link-gold" }}
-              activeOptions={{ exact: l.to === "/" }}
+              activeOptions={{ exact: l.path === "/" }}
             >
               <span className="relative inline-block">
                 {l.label}
@@ -50,12 +43,12 @@ export function Header() {
           <div className="flex flex-col px-6 py-4 gap-4">
             {links.map((l) => (
               <Link
-                key={l.to}
-                to={l.to}
+                key={l.path}
+                to={l.path}
                 onClick={() => setOpen(false)}
                 className="nav-link py-1"
                 activeProps={{ className: "nav-link nav-link-gold py-1" }}
-                activeOptions={{ exact: l.to === "/" }}
+                activeOptions={{ exact: l.path === "/" }}
               >
                 {l.label}
               </Link>

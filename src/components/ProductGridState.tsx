@@ -1,5 +1,6 @@
 import { Skeleton } from "@/components/ui/skeleton";
-import { inquiryLink, type InquiryChannel } from "@/data/contact";
+import type { InquiryChannel } from "@/data/contact";
+import { useInquiryLink } from "@/hooks/useSiteContent";
 
 export function ProductGridSkeleton({ count }: { count: number }) {
   return (
@@ -35,6 +36,7 @@ export function ProductGridEmpty({
   channel: InquiryChannel;
   label: string;
 }) {
+  const href = useInquiryLink(channel);
   return (
     <div className="col-span-full text-center py-16">
       <p className="kicker">Nothing here yet</p>
@@ -44,7 +46,7 @@ export function ProductGridEmpty({
       </p>
       <div className="mt-8">
         <a
-          href={inquiryLink(channel)}
+          href={href}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 border border-gold text-gold-deep px-7 py-3 text-xs uppercase tracking-[0.22em] hover:bg-gold hover:text-charcoal transition-colors"
