@@ -10,8 +10,43 @@ import {
 } from "@/components/ui/command";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { useWatches, usePerfumes, useSunglasses, useOptical } from "@/hooks/useProducts";
-import { ProductCard, type Product } from "@/components/ProductCard";
+import type { Product } from "@/components/ProductCard";
+import { useInquiryLink } from "@/hooks/useSiteContent";
 import type { InquiryChannel } from "@/data/contact";
+
+function SearchResultOverlay({ product, channel }: { product: Product; channel: InquiryChannel }) {
+  const href = useInquiryLink(channel, product.name);
+  return (
+    <div className="flex gap-4 bg-surface border border-hairline p-5 pr-10">
+      <div className="relative w-28 shrink-0 aspect-[4/5] overflow-hidden bg-ivory">
+        <img src={product.image} alt={product.name} className="h-full w-full object-cover" />
+      </div>
+      <div className="flex flex-col min-w-0 flex-1">
+        <div className="flex items-center justify-between gap-2">
+          <span className="kicker">{product.ref}</span>
+          {product.brand && <span className="eyebrow text-muted-ink">{product.brand}</span>}
+        </div>
+        <h3 className="font-serif text-lg text-ink mt-2 leading-snug">{product.name}</h3>
+        <p className="mt-2 text-xs text-muted-ink leading-relaxed">{product.specs.join(" · ")}</p>
+        {product.price !== undefined && (
+          <div className="mt-3 flex items-baseline justify-between border-t border-ink/10 pt-3">
+            <span className="eyebrow text-muted-ink">Price</span>
+            <span className="font-serif text-ink">৳ {product.price.toLocaleString("en-BD")}</span>
+          </div>
+        )}
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-4 inline-flex items-center justify-center gap-2 border border-gold text-gold-deep hover:bg-gold hover:text-charcoal transition-colors px-4 py-2 text-xs uppercase tracking-[0.22em] font-medium"
+        >
+          Inquire
+          <span aria-hidden>→</span>
+        </a>
+      </div>
+    </div>
+  );
+}
 
 const CATEGORIES: {
   heading: string;
@@ -103,11 +138,11 @@ export function SearchCommand({
         </CommandList>
       </CommandDialog>
       <Dialog open={!!selected} onOpenChange={(o) => !o && setSelected(null)}>
-        <DialogContent className="max-w-sm max-h-[85vh] overflow-y-auto p-0 border-0 bg-transparent shadow-none">
+        <DialogContent className="max-w-md p-0 border-0 bg-transparent shadow-none">
           {selected && (
             <>
               <DialogTitle className="sr-only">{selected.product.name}</DialogTitle>
-              <ProductCard product={selected.product} channel={selected.channel} />
+              <SearchResultOverlay product={selected.product} channel={selected.channel} />
             </>
           )}
         </DialogContent>
