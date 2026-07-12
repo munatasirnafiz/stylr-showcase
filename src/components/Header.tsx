@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Menu, X } from "lucide-react";
+import { Menu, Search, X } from "lucide-react";
 import { Logo } from "./Logo";
+import { SearchCommand } from "./SearchCommand";
 import { useSiteSettings, FALLBACK_SITE_SETTINGS } from "@/hooks/useSiteContent";
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const { data } = useSiteSettings();
   const links = data?.headerNavLinks ?? FALLBACK_SITE_SETTINGS.headerNavLinks;
   return (
@@ -30,13 +32,18 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        <button
-          onClick={() => setOpen(!open)}
-          className="md:hidden p-2 text-ink"
-          aria-label="Toggle menu"
-        >
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        <div className="flex items-center gap-1">
+          <button onClick={() => setSearchOpen(true)} className="p-2 text-ink" aria-label="Search">
+            <Search size={20} />
+          </button>
+          <button
+            onClick={() => setOpen(!open)}
+            className="md:hidden p-2 text-ink"
+            aria-label="Toggle menu"
+          >
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </div>
       {open && (
         <nav className="md:hidden border-t border-hairline bg-surface">
@@ -56,6 +63,7 @@ export function Header() {
           </div>
         </nav>
       )}
+      <SearchCommand open={searchOpen} onOpenChange={setSearchOpen} />
     </header>
   );
 }
