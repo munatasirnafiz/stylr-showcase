@@ -103,7 +103,7 @@ export function SearchCommand({
         </CommandList>
       </CommandDialog>
       <Dialog open={!!selected} onOpenChange={(o) => !o && setSelected(null)}>
-        <DialogContent className="max-w-sm p-0 border-0 bg-transparent shadow-none">
+        <DialogContent className="max-w-sm max-h-[85vh] overflow-y-auto p-0 border-0 bg-transparent shadow-none">
           {selected && (
             <>
               <DialogTitle className="sr-only">{selected.product.name}</DialogTitle>
