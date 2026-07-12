@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useNavigate } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import {
   CommandDialog,
   CommandEmpty,
@@ -9,15 +8,20 @@ import {
   CommandList,
   CommandShortcut,
 } from "@/components/ui/command";
-import { DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { useWatches, usePerfumes, useSunglasses, useOptical } from "@/hooks/useProducts";
-import type { Product } from "@/components/ProductCard";
+import { ProductCard, type Product } from "@/components/ProductCard";
+import type { InquiryChannel } from "@/data/contact";
 
-const CATEGORIES = [
-  { heading: "Watches", path: "/watches" as const, useList: useWatches },
-  { heading: "Perfumes", path: "/perfumes" as const, useList: usePerfumes },
-  { heading: "Sunglasses", path: "/sunglasses" as const, useList: useSunglasses },
-  { heading: "Optical", path: "/optical" as const, useList: useOptical },
+const CATEGORIES: {
+  heading: string;
+  channel: InquiryChannel;
+  useList: typeof useWatches;
+}[] = [
+  { heading: "Watches", channel: "watches", useList: useWatches },
+  { heading: "Perfumes", channel: "perfumes", useList: usePerfumes },
+  { heading: "Sunglasses", channel: "eyewear", useList: useSunglasses },
+  { heading: "Optical", channel: "eyewear", useList: useOptical },
 ];
 
 export function SearchCommand({
@@ -27,9 +31,13 @@ export function SearchCommand({
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }) {
-  const navigate = useNavigate();
+  const [query, setQuery] = useState("");
+  const [selected, setSelected] = useState<{ product: Product; channel: InquiryChannel } | null>(
+    null,
+  );
   const groups = CATEGORIES.map((c) => ({ ...c, query: c.useList() }));
   const anyLoading = groups.some((g) => g.query.isLoading);
+  const hasQuery = query.trim().length > 0;
 
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
@@ -42,38 +50,68 @@ export function SearchCommand({
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [open, onOpenChange]);
 
-  function selectProduct(path: string) {
-    onOpenChange(false);
-    navigate({ to: path });
+  function handleOpenChange(next: boolean) {
+    onOpenChange(next);
+    if (!next) setQuery("");
+  }
+
+  function selectProduct(product: Product, channel: InquiryChannel) {
+    setSelected({ product, channel });
+    handleOpenChange(false);
   }
 
   return (
-    <CommandDialog open={open} onOpenChange={onOpenChange}>
-      <DialogTitle className="sr-only">Search products</DialogTitle>
-      <CommandInput placeholder="Search watches, perfumes, sunglasses, optical…" />
-      <CommandList>
-        <CommandEmpty>{anyLoading ? "Loading catalogue…" : "No products found."}</CommandEmpty>
-        {groups.map(
-          (group) =>
-            !!group.query.data?.length && (
-              <CommandGroup key={group.path} heading={group.heading}>
-                {group.query.data.map((product: Product) => (
-                  <CommandItem
-                    key={product.ref}
-                    value={`${product.brand ?? ""} ${product.name} ${product.ref}`}
-                    onSelect={() => selectProduct(group.path)}
-                  >
-                    <span>
-                      {product.brand && <span className="text-muted-ink">{product.brand} · </span>}
-                      {product.name}
-                    </span>
-                    <CommandShortcut>{product.ref}</CommandShortcut>
-                  </CommandItem>
-                ))}
-              </CommandGroup>
-            ),
-        )}
-      </CommandList>
-    </CommandDialog>
+    <>
+      <CommandDialog open={open} onOpenChange={handleOpenChange}>
+        <DialogTitle className="sr-only">Search products</DialogTitle>
+        <CommandInput
+          value={query}
+          onValueChange={setQuery}
+          placeholder="Search watches, perfumes, sunglasses, optical…"
+        />
+        <CommandList>
+          <CommandEmpty>
+            {hasQuery
+              ? anyLoading
+                ? "Loading catalogue…"
+                : "No products found."
+              : "Start typing to search the collection…"}
+          </CommandEmpty>
+          {hasQuery &&
+            groups.map(
+              (group) =>
+                !!group.query.data?.length && (
+                  <CommandGroup key={group.heading} heading={group.heading}>
+                    {group.query.data.map((product: Product) => (
+                      <CommandItem
+                        key={product.ref}
+                        value={`${product.brand ?? ""} ${product.name} ${product.ref}`}
+                        onSelect={() => selectProduct(product, group.channel)}
+                      >
+                        <span>
+                          {product.brand && (
+                            <span className="text-muted-ink">{product.brand} · </span>
+                          )}
+                          {product.name}
+                        </span>
+                        <CommandShortcut>{product.ref}</CommandShortcut>
+                      </CommandItem>
+                    ))}
+                  </CommandGroup>
+                ),
+            )}
+        </CommandList>
+      </CommandDialog>
+      <Dialog open={!!selected} onOpenChange={(o) => !o && setSelected(null)}>
+        <DialogContent className="max-w-sm p-0 border-0 bg-transparent shadow-none">
+          {selected && (
+            <>
+              <DialogTitle className="sr-only">{selected.product.name}</DialogTitle>
+              <ProductCard product={selected.product} channel={selected.channel} />
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }
