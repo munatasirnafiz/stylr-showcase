@@ -17,16 +17,22 @@ import type { InquiryChannel } from "@/data/contact";
 function SearchResultOverlay({ product, channel }: { product: Product; channel: InquiryChannel }) {
   const href = useInquiryLink(channel, product.name);
   return (
-    <div className="flex gap-4 bg-surface border border-hairline p-5 pr-10">
-      <div className="relative w-28 shrink-0 aspect-[4/5] overflow-hidden bg-ivory">
-        <img src={product.image} alt={product.name} className="h-full w-full object-cover" />
+    <div className="group flex gap-4 bg-surface border border-hairline p-6 pr-11">
+      <div className="relative w-32 sm:w-44 shrink-0 aspect-[4/5] overflow-hidden bg-ivory">
+        <img
+          src={product.image}
+          alt={product.name}
+          className="h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
+        />
       </div>
       <div className="flex flex-col min-w-0 flex-1">
-        <div className="flex items-center justify-between gap-2">
-          <span className="kicker">{product.ref}</span>
-          {product.brand && <span className="eyebrow text-muted-ink">{product.brand}</span>}
+        <div className="flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-2">
+          <span className="kicker whitespace-nowrap">{product.ref}</span>
+          {product.brand && (
+            <span className="eyebrow text-muted-ink whitespace-nowrap">{product.brand}</span>
+          )}
         </div>
-        <h3 className="font-serif text-lg text-ink mt-2 leading-snug">{product.name}</h3>
+        <h3 className="font-serif text-xl text-ink mt-2 leading-snug">{product.name}</h3>
         <p className="mt-2 text-xs text-muted-ink leading-relaxed">{product.specs.join(" · ")}</p>
         {product.price !== undefined && (
           <div className="mt-3 flex items-baseline justify-between border-t border-ink/10 pt-3">
@@ -138,7 +144,7 @@ export function SearchCommand({
         </CommandList>
       </CommandDialog>
       <Dialog open={!!selected} onOpenChange={(o) => !o && setSelected(null)}>
-        <DialogContent className="max-w-md p-0 border-0 bg-transparent shadow-none">
+        <DialogContent className="max-w-xl p-0 border-0 bg-transparent shadow-none">
           {selected && (
             <>
               <DialogTitle className="sr-only">{selected.product.name}</DialogTitle>
