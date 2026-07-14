@@ -19,11 +19,19 @@ function heroImg(source: SanityImage) {
 }
 
 export function toWatchProduct(w: SanityWatch): Product {
-  return { ref: w.referenceNumber, name: w.name, specs: w.specs, image: img(w.image), price: w.price };
+  return { ref: w.referenceNumber, brand: w.brand, name: w.name, specs: w.specs, image: img(w.image), price: w.price };
 }
 
 export function toPerfumeProduct(p: SanityPerfume): Product {
-  return { ref: p.catalogueNumber, brand: p.brand, name: p.name, specs: p.specs, image: img(p.image), price: p.price };
+  return {
+    ref: p.catalogueNumber,
+    brand: p.brand,
+    gender: p.gender,
+    name: p.name,
+    specs: p.specs,
+    image: img(p.image),
+    price: p.price,
+  };
 }
 
 export function toSunglassesProduct(s: SanitySunglasses): Product {

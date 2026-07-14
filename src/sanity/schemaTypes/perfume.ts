@@ -18,6 +18,19 @@ export const perfume = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "gender",
+      title: "Gender",
+      type: "string",
+      options: {
+        list: [
+          { title: "Men", value: "men" },
+          { title: "Women", value: "women" },
+          { title: "Unisex", value: "unisex" },
+        ],
+      },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: "name",
       title: "Name",
       type: "string",
