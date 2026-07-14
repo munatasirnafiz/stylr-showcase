@@ -66,6 +66,7 @@ export interface SanityPhoneEntry {
 }
 
 export interface SanitySiteSettings {
+  logo?: SanityImage;
   brandName: string;
   brandSuffix: string;
   headerNavLinks: SanityNavLink[];
@@ -116,7 +117,7 @@ export interface SanityHomepage {
 }
 
 const SITE_SETTINGS_FIELDS = `
-  brandName, brandSuffix, headerNavLinks, footerNavLinks, footerBlurb, footerTagline,
+  logo, brandName, brandSuffix, headerNavLinks, footerNavLinks, footerBlurb, footerTagline,
   footerLocationTag, copyrightSuffix, addressLines, delivery, email, businessHours, phones
 `;
 

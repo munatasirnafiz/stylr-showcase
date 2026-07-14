@@ -7,6 +7,13 @@ export const siteSettings = defineType({
   type: "document",
   fields: [
     defineField({
+      name: "logo",
+      title: "Logo",
+      description: "Optional. Overrides the default gold monogram in the header and footer when set.",
+      type: "image",
+      options: { hotspot: true },
+    }),
+    defineField({
       name: "brandName",
       title: "Brand Name",
       type: "string",
@@ -146,6 +153,7 @@ export const siteSettings = defineType({
     }),
   ],
   preview: {
-    prepare: () => ({ title: "Site Settings" }),
+    select: { media: "logo" },
+    prepare: ({ media }) => ({ title: "Site Settings", media }),
   },
 });
