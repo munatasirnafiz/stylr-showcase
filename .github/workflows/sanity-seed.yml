@@ -1,0 +1,29 @@
+name: Sanity Seed
+
+# Manual-only: pushes/updates demo product, site-settings, and homepage
+# content into the live Sanity production dataset. Run from the Actions
+# tab (or via the API) when you want to (re)seed the CMS.
+on:
+  workflow_dispatch: {}
+
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Run seed script
+        env:
+          VITE_SANITY_PROJECT_ID: ${{ vars.SANITY_PROJECT_ID || 'yczlvuot' }}
+          VITE_SANITY_DATASET: ${{ vars.SANITY_DATASET || 'production' }}
+          SANITY_API_WRITE_TOKEN: ${{ secrets.SANITY_API_WRITE_TOKEN }}
+        run: bun run seed
