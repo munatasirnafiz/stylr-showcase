@@ -6,36 +6,42 @@ const watchesBase: Omit<Product, "price">[] = [
   // Latest uploads (6)
   {
     ref: "REF · GU-DV-SN",
+    brand: "Gucci",
     name: "Gucci Dive — Serpent Black",
     specs: ["Stainless steel, 45mm", "Black snake-motif dial", "Black Gucci rubber strap"],
     image: "/products/gucci-dive-snake.jpg",
   },
   {
     ref: "REF · GU-DV-RD",
+    brand: "Gucci",
     name: "Gucci Dive — Scarlet Strap",
     specs: ["Stainless steel, 45mm", "Black dial, luminous indices", "Scarlet rubber strap"],
     image: "/products/gucci-dive-red.jpg",
   },
   {
     ref: "REF · GU-DV-BK",
+    brand: "Gucci",
     name: "Gucci Dive — Nero",
     specs: ["Stainless steel, 40mm", "Matte black dial", "Black rubber strap"],
     image: "/products/gucci-dive-black.jpg",
   },
   {
     ref: "REF · DJ28-TT",
+    brand: "Rolex",
     name: "Rolex Datejust 28 — Two-Tone",
     specs: ["Steel & yellow gold, 28mm", "Silver dial, gold bezel", "Oyster bracelet"],
     image: "/products/rolex-datejust28-two-tone.jpg",
   },
   {
     ref: "REF · DJ28-SL",
+    brand: "Rolex",
     name: "Rolex Datejust 28 — Silver",
     specs: ["Stainless steel, 28mm", "Silver sunray dial", "President bracelet"],
     image: "/products/rolex-datejust28-silver.jpg",
   },
   {
     ref: "REF · DJ28-BL",
+    brand: "Rolex",
     name: "Rolex Datejust 28 — Indigo",
     specs: ["Stainless steel, 28mm", "Deep blue dial, smooth bezel", "Oyster bracelet"],
     image: "/products/rolex-datejust28-blue.jpg",
@@ -43,60 +49,70 @@ const watchesBase: Omit<Product, "price">[] = [
   // Previous uploads (10)
   {
     ref: "REF · OM-SM-GW",
+    brand: "Omega",
     name: "Omega Seamaster Pro 300m — Gold/White",
     specs: ["Two-tone steel & gold, 42mm", "White dial, moonphase", "Black rubber strap"],
     image: "/products/omega-seamaster-gold-white.jpg",
   },
   {
     ref: "REF · OM-SM-RB",
+    brand: "Omega",
     name: "Omega Seamaster Pro 300m — Rose/Blue",
     specs: ["Steel & rose gold, 42mm", "Lacquered blue dial", "Blue rubber strap"],
     image: "/products/omega-seamaster-rose-blue.jpg",
   },
   {
     ref: "REF · DJ-DD-CP",
+    brand: "Rolex",
     name: "Rolex His & Hers Set — Two-Tone Onyx",
     specs: ["Datejust 31 + Day-Date 40", "Steel & yellow gold", "Black sunray dials"],
     image: "/products/rolex-couple-two-tone-black.jpg",
   },
   {
     ref: "REF · DJ41-SS",
+    brand: "Rolex",
     name: "Rolex Datejust 41 — Silver Sunray",
     specs: ["Oystersteel, 41mm", "Silver sunray dial, stick markers", "Jubilee, fluted bezel"],
     image: "/products/rolex-datejust-silver-sunray.jpg",
   },
   {
     ref: "REF · DJ41-BS",
+    brand: "Rolex",
     name: "Rolex Datejust 41 — Midnight Blue",
     specs: ["Oystersteel, 41mm", "Blue sunray dial", "Jubilee, smooth bezel"],
     image: "/products/rolex-datejust-blue-smooth.jpg",
   },
   {
     ref: "REF · AP-RO-B",
+    brand: "Audemars Piguet",
     name: "Audemars Piguet Royal Oak — Bleu Nuit",
     specs: ["Stainless steel, 41mm", "Midnight blue tapisserie dial", "Integrated bracelet"],
     image: "/products/ap-royal-oak-blue.jpg",
   },
   {
     ref: "REF · DD40-GR",
+    brand: "Rolex",
     name: "Rolex Day-Date 40 — Graphite",
     specs: ["Polished steel, 40mm", "Graphite dial, baton indices", "President bracelet"],
     image: "/products/rolex-daydate-graphite.jpg",
   },
   {
     ref: "REF · DJ41-FP",
+    brand: "Rolex",
     name: "Rolex Datejust 41 — Full PVD",
     specs: ["Full PVD black case", "Stealth black dial", "Jubilee bracelet"],
     image: "/products/rolex-datejust-full-pvd.jpg",
   },
   {
     ref: "REF · OP41-BR",
+    brand: "Rolex",
     name: "Rolex Oyster Perpetual 41 — Black Roman",
     specs: ["Stainless steel, 41mm", "Black dial, Roman numerals", "Oyster bracelet"],
     image: "/products/rolex-oyster-perpetual-black-roman.jpg",
   },
   {
     ref: "REF · DD40-CB",
+    brand: "Rolex",
     name: "Rolex Day-Date 40 — Cobalt",
     specs: ["Polished steel, 40mm", "Cobalt blue dial", "President bracelet"],
     image: "/products/rolex-daydate-cobalt.jpg",
@@ -104,60 +120,70 @@ const watchesBase: Omit<Product, "price">[] = [
   // Existing watches
   {
     ref: "REF · DJ41-TQ",
+    brand: "Rolex",
     name: "Rolex Datejust 41 — Tiffany Turquoise",
     specs: ["Oystersteel, 41mm", "Turquoise sunray dial", "Jubilee bracelet"],
     image: "/products/rolex-datejust-tiffany.jpg",
   },
   {
     ref: "REF · DD40-IB",
+    brand: "Rolex",
     name: "Rolex Day-Date 40 — Ice Blue",
     specs: ["Polished steel, 40mm", "Ice blue lacquered dial", "President bracelet"],
     image: "/products/rolex-daydate-ice-blue.jpg",
   },
   {
     ref: "REF · DJ41-EM",
+    brand: "Rolex",
     name: "Rolex Datejust 41 — Emerald",
     specs: ["Oystersteel, 41mm", "Emerald green dial", "Jubilee, fluted bezel"],
     image: "/products/rolex-datejust-emerald.jpg",
   },
   {
     ref: "REF · DJ41-VR",
+    brand: "Rolex",
     name: "Rolex Datejust 41 — Verde Royale",
     specs: ["Oystersteel, 41mm", "Vivid green dial, stick markers", "Jubilee bracelet"],
     image: "/products/rolex-datejust-green-stick.jpg",
   },
   {
     ref: "REF · AP-RO-N",
+    brand: "Audemars Piguet",
     name: "Audemars Piguet Royal Oak — Noir",
     specs: ["Stainless steel, 41mm", "Black 'Grande Tapisserie' dial", "Integrated bracelet"],
     image: "/products/ap-royal-oak-black.jpg",
   },
   {
     ref: "REF · AP-RO-W",
+    brand: "Audemars Piguet",
     name: "Audemars Piguet Royal Oak — Blanc",
     specs: ["Stainless steel, 41mm", "Silver tapisserie dial", "Octagonal bezel"],
     image: "/products/ap-royal-oak-white.jpg",
   },
   {
     ref: "REF · DJ41-SR",
+    brand: "Rolex",
     name: "Rolex Datejust 41 — Silver Roman (Ruby)",
     specs: ["Oystersteel, 41mm", "Silver dial, red Roman markers", "Jubilee bracelet"],
     image: "/products/rolex-datejust-silver-red-roman.jpg",
   },
   {
     ref: "REF · DJ41-SO",
+    brand: "Rolex",
     name: "Rolex Datejust 41 — Silver Roman (Onyx)",
     specs: ["Oystersteel, 41mm", "Silver dial, black Roman markers", "Jubilee bracelet"],
     image: "/products/rolex-datejust-silver-black-roman.jpg",
   },
   {
     ref: "REF · DJ41-SB",
+    brand: "Rolex",
     name: "Rolex Datejust 41 — Silver Roman (Cobalt)",
     specs: ["Oystersteel, 41mm", "Silver dial, blue Roman markers", "Jubilee bracelet"],
     image: "/products/rolex-datejust-silver-blue-roman.jpg",
   },
   {
     ref: "REF · OP36-SL",
+    brand: "Rolex",
     name: "Rolex Oyster Perpetual 36 — Silver",
     specs: ["Stainless steel, 36mm", "Silver dial, Roman numerals", "Oyster bracelet"],
     image: "/products/rolex-oyster-perpetual-silver.jpg",
@@ -173,6 +199,7 @@ export const perfumes: Product[] = [
   {
     ref: "N° 501981",
     brand: "Parfums de Marly",
+    gender: "women",
     name: "Delina Exclusif",
     specs: ["75 ml", "Parfum", "Women"],
     image: "/products/parfums-de-marly-delina.jpg",
@@ -180,6 +207,7 @@ export const perfumes: Product[] = [
   {
     ref: "N° 648425",
     brand: "Yves Saint Laurent",
+    gender: "women",
     name: "Libre — Eau de Parfum",
     specs: ["90 ml", "Eau de Parfum", "Women"],
     image: "/products/ysl-libre.jpg",
@@ -187,6 +215,7 @@ export const perfumes: Product[] = [
   {
     ref: "N° 1801",
     brand: "Chanel",
+    gender: "men",
     name: "Bleu de Chanel — Parfum",
     specs: ["100 ml", "Parfum Pour Homme", "Men"],
     image: "/products/chanel-bleu.jpg",
@@ -194,6 +223,7 @@ export const perfumes: Product[] = [
   {
     ref: "N° 8247",
     brand: "Dior",
+    gender: "men",
     name: "Sauvage — Eau de Parfum",
     specs: ["100 ml", "Eau de Parfum", "Men"],
     image: "/products/dior-sauvage-edp.jpg",
@@ -201,6 +231,7 @@ export const perfumes: Product[] = [
   {
     ref: "N° 486385",
     brand: "Dior",
+    gender: "men",
     name: "Sauvage Parfum",
     specs: ["100 ml", "Parfum", "Men"],
     image: "/products/dior-sauvage-parfum.jpg",
@@ -208,6 +239,7 @@ export const perfumes: Product[] = [
   {
     ref: "N° P4697",
     brand: "Giorgio Armani",
+    gender: "men",
     name: "Acqua di Giò — Pour Homme",
     specs: ["100 ml", "Eau de Toilette", "Men"],
     image: "/products/armani-acqua-di-gio.jpg",
@@ -215,6 +247,7 @@ export const perfumes: Product[] = [
   {
     ref: "N° 994844",
     brand: "Giorgio Armani",
+    gender: "women",
     name: "Sì Passione — Eau de Parfum",
     specs: ["100 ml", "Eau de Parfum", "Women"],
     image: "/products/armani-si-passione.jpg",
@@ -222,6 +255,7 @@ export const perfumes: Product[] = [
   {
     ref: "N° 610",
     brand: "Jo Malone London",
+    gender: "unisex",
     name: "Blackberry & Bay Cologne",
     specs: ["100 ml", "Eau de Cologne", "Unisex"],
     image: "/products/jomalone-blackberry.jpg",
@@ -229,6 +263,7 @@ export const perfumes: Product[] = [
   {
     ref: "N° 410164",
     brand: "Amouage",
+    gender: "women",
     name: "Honour Woman",
     specs: ["100 ml", "Eau de Parfum", "Women"],
     image: "/products/amouage-honour.jpg",
@@ -236,6 +271,7 @@ export const perfumes: Product[] = [
   {
     ref: "N° 410423",
     brand: "Amouage",
+    gender: "men",
     name: "Lineage",
     specs: ["100 ml", "Eau de Parfum", "Men"],
     image: "/products/amouage-lineage.jpg",
@@ -243,6 +279,7 @@ export const perfumes: Product[] = [
   {
     ref: "N° 410232",
     brand: "Amouage",
+    gender: "women",
     name: "Journey Woman",
     specs: ["100 ml", "Eau de Parfum", "Women"],
     image: "/products/amouage-journey.jpg",
@@ -250,6 +287,7 @@ export const perfumes: Product[] = [
   {
     ref: "N° 153595",
     brand: "Xerjoff Casamorati",
+    gender: "women",
     name: "Lira — Eau de Parfum",
     specs: ["100 ml", "Eau de Parfum", "Women"],
     image: "/products/casamorati-lira.jpg",
@@ -257,6 +295,7 @@ export const perfumes: Product[] = [
   {
     ref: "N° 153557",
     brand: "Xerjoff Casamorati",
+    gender: "men",
     name: "Mefisto — Eau de Parfum",
     specs: ["100 ml", "Eau de Parfum", "Men"],
     image: "/products/casamorati-mefisto.jpg",
@@ -264,6 +303,7 @@ export const perfumes: Product[] = [
   {
     ref: "N° 911",
     brand: "Jo Malone London",
+    gender: "unisex",
     name: "English Pear & Freesia Cologne",
     specs: ["100 ml", "Eau de Cologne", "Unisex"],
     image: "/products/jomalone-pear.jpg",
@@ -271,6 +311,7 @@ export const perfumes: Product[] = [
   {
     ref: "N° 0588",
     brand: "Emporio Armani",
+    gender: "men",
     name: "Stronger With You — Pour Homme",
     specs: ["100 ml", "Eau de Toilette", "Men"],
     image: "/products/armani-you.jpg",
@@ -278,6 +319,7 @@ export const perfumes: Product[] = [
   {
     ref: "N° 816658",
     brand: "Giorgio Armani",
+    gender: "women",
     name: "Sì — Eau de Parfum",
     specs: ["100 ml", "Eau de Parfum", "Women"],
     image: "/products/armani-si.jpg",
@@ -285,6 +327,7 @@ export const perfumes: Product[] = [
   {
     ref: "N° 760164",
     brand: "Prada",
+    gender: "women",
     name: "Paradoxe — Refillable Edition",
     specs: ["90 ml", "Eau de Parfum", "Women"],
     image: "/products/prada-paradoxe.jpg",

@@ -72,6 +72,7 @@ async function seedCategory(
       featured: i < 4,
     };
     if (item.brand) doc.brand = item.brand;
+    if (item.gender) doc.gender = item.gender;
 
     await client.createOrReplace(doc as never);
     console.log(`${type} ${i + 1}/${items.length}: ${item.name}`);

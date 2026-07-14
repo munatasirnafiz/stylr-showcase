@@ -12,6 +12,12 @@ export const watch = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "brand",
+      title: "Brand",
+      type: "string",
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: "name",
       title: "Name",
       type: "string",
@@ -47,7 +53,7 @@ export const watch = defineType({
   preview: {
     select: {
       title: "name",
-      subtitle: "referenceNumber",
+      subtitle: "brand",
       media: "image",
     },
   },

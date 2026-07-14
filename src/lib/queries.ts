@@ -6,6 +6,7 @@ export interface SanityImage {
 export interface SanityWatch {
   _id: string;
   referenceNumber: string;
+  brand: string;
   name: string;
   specs: string[];
   price: number;
@@ -13,10 +14,13 @@ export interface SanityWatch {
   featured: boolean;
 }
 
+export type PerfumeGender = "men" | "women" | "unisex";
+
 export interface SanityPerfume {
   _id: string;
   catalogueNumber: string;
   brand: string;
+  gender: PerfumeGender;
   name: string;
   specs: string[];
   price: number;
@@ -37,13 +41,14 @@ export interface SanitySunglasses {
 
 export type SanityOptical = SanitySunglasses;
 
-const WATCH_FIELDS = `_id, referenceNumber, name, specs, price, image, featured`;
-const PERFUME_FIELDS = `_id, catalogueNumber, brand, name, specs, price, image, featured`;
+const WATCH_FIELDS = `_id, referenceNumber, brand, name, specs, price, image, featured`;
+const PERFUME_FIELDS = `_id, catalogueNumber, brand, gender, name, specs, price, image, featured`;
 const SUNGLASSES_FIELDS = `_id, referenceNumber, brand, name, specs, price, image, featured`;
 const OPTICAL_FIELDS = SUNGLASSES_FIELDS;
 
 export const ALL_WATCHES_QUERY = `*[_type == "watch"] | order(_createdAt desc){ ${WATCH_FIELDS} }`;
 export const FEATURED_WATCHES_QUERY = `*[_type == "watch" && featured == true] | order(_createdAt desc)[0...4]{ ${WATCH_FIELDS} }`;
+export const WATCH_BRANDS_QUERY = `array::unique(*[_type == "watch" && defined(brand)].brand)`;
 
 export const ALL_PERFUMES_QUERY = `*[_type == "perfume"] | order(_createdAt desc){ ${PERFUME_FIELDS} }`;
 export const FEATURED_PERFUMES_QUERY = `*[_type == "perfume" && featured == true] | order(_createdAt desc)[0...4]{ ${PERFUME_FIELDS} }`;

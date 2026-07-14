@@ -9,6 +9,7 @@ import {
 import {
   ALL_WATCHES_QUERY,
   FEATURED_WATCHES_QUERY,
+  WATCH_BRANDS_QUERY,
   ALL_PERFUMES_QUERY,
   FEATURED_PERFUMES_QUERY,
   ALL_SUNGLASSES_QUERY,
@@ -31,6 +32,17 @@ function useSanityList<TDoc>(key: readonly unknown[], query: string, map: (doc: 
 
 export const useWatches = () => useSanityList(["watches", "all"], ALL_WATCHES_QUERY, toWatchProduct);
 export const useFeaturedWatches = () => useSanityList(["watches", "featured"], FEATURED_WATCHES_QUERY, toWatchProduct);
+
+export const useWatchBrands = () =>
+  useQuery({
+    queryKey: ["watches", "brands"],
+    queryFn: async () => {
+      const brands = await sanityClient.fetch<string[]>(WATCH_BRANDS_QUERY);
+      return [...brands].sort((a, b) => a.localeCompare(b));
+    },
+    placeholderData: [],
+    staleTime: 5 * 60 * 1000,
+  });
 
 export const usePerfumes = () => useSanityList(["perfumes", "all"], ALL_PERFUMES_QUERY, toPerfumeProduct);
 export const useFeaturedPerfumes = () => useSanityList(["perfumes", "featured"], FEATURED_PERFUMES_QUERY, toPerfumeProduct);

@@ -3,6 +3,7 @@ import { useInquiryLink } from "@/hooks/useSiteContent";
 export interface Product {
   ref: string;
   brand?: string;
+  gender?: "men" | "women" | "unisex";
   name: string;
   specs: string[];
   image: string;
