@@ -60,9 +60,15 @@ async function seedCategory(
   priceFor: (item: Product, index: number) => number,
 ) {
   for (const [i, item] of items.entries()) {
+    const id = `${type}-${slugify(item.ref)}`;
+    if (await client.getDocument(id)) {
+      console.log(`${type} ${i + 1}/${items.length}: ${item.name} (already exists, skipped)`);
+      continue;
+    }
+
     const image = await uploadImage(item.image);
     const doc: Record<string, unknown> = {
-      _id: `${type}-${slugify(item.ref)}`,
+      _id: id,
       _type: type,
       [refField]: item.ref,
       name: item.name,
@@ -74,12 +80,16 @@ async function seedCategory(
     if (item.brand) doc.brand = item.brand;
     if (item.gender) doc.gender = item.gender;
 
-    await client.createOrReplace(doc as never);
-    console.log(`${type} ${i + 1}/${items.length}: ${item.name}`);
+    await client.createIfNotExists(doc as never);
+    console.log(`${type} ${i + 1}/${items.length}: ${item.name} (created)`);
   }
 }
 
 async function seedSiteSettings() {
+  if (await client.getDocument("siteSettings")) {
+    console.log("Site settings already exist, skipped.");
+    return;
+  }
   const doc = {
     _id: "siteSettings",
     _type: "siteSettings",
@@ -116,11 +126,15 @@ async function seedSiteSettings() {
       { _key: "perfumes", channel: "perfumes", phone: "+880 1521 430196", waNumber: "8801521430196" },
     ],
   };
-  await client.createOrReplace(doc as never);
+  await client.createIfNotExists(doc as never);
   console.log("Site settings seeded.");
 }
 
 async function seedHomepage() {
+  if (await client.getDocument("homepage")) {
+    console.log("Homepage already exists, skipped.");
+    return;
+  }
   const heroWatchesImage = await uploadAssetImage("hero-watches.jpg");
   const heroPerfumeImage = await uploadAssetImage("hero-perfume.jpg");
   const sunglassesCarouselImage = await uploadImage("/products/rb2140-wayfarer.jpg");
@@ -235,7 +249,7 @@ async function seedHomepage() {
       },
     ],
   };
-  await client.createOrReplace(doc as never);
+  await client.createIfNotExists(doc as never);
   console.log("Homepage seeded.");
 }
 
@@ -246,7 +260,7 @@ async function main() {
   await seedCategory(optical, "optical", "referenceNumber", (_o, i) => opticalPrices[i % opticalPrices.length]);
   await seedSiteSettings();
   await seedHomepage();
-  console.log("Seed complete — 63 products, site settings, and homepage created/updated.");
+  console.log("Seed complete. Existing documents were left untouched — only missing ones were created.");
 }
 
 main().catch((err) => {
