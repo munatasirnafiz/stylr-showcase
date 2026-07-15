@@ -87,6 +87,68 @@ async function restoreCategory(refs: string[], type: "watch" | "perfume" | "sung
   }
 }
 
+function stripSystemFields(doc: Record<string, unknown> | undefined) {
+  if (!doc) return undefined;
+  const { _rev, _updatedAt, _createdAt, ...rest } = doc;
+  return rest;
+}
+
+function collectImageRefs(value: unknown, out: string[] = []): string[] {
+  if (Array.isArray(value)) {
+    for (const v of value) collectImageRefs(v, out);
+  } else if (value && typeof value === "object") {
+    const obj = value as Record<string, unknown>;
+    if (obj._type === "image" && obj.asset && typeof obj.asset === "object") {
+      const ref = (obj.asset as Record<string, unknown>)._ref;
+      if (typeof ref === "string") out.push(ref);
+    } else {
+      for (const v of Object.values(obj)) collectImageRefs(v, out);
+    }
+  }
+  return out;
+}
+
+// For singleton docs (homepage, siteSettings) whose shape is too nested to
+// diff field-by-field usefully — reports whether content differs at all, and
+// separately calls out any image asset references that changed.
+async function restoreSingleton(id: string) {
+  const current = (await client.getDocument(id)) as Record<string, unknown> | undefined;
+  const historical = await fetchHistorical(id);
+
+  if (!historical) {
+    console.log(`${id}: no snapshot found at ${restoreTime} — skipping.`);
+    return;
+  }
+
+  const currentBody = stripSystemFields(current);
+  const historicalBody = stripSystemFields(historical);
+
+  if (JSON.stringify(currentBody) === JSON.stringify(historicalBody)) {
+    console.log(`${id}: matches historical snapshot already, nothing to do.`);
+    return;
+  }
+
+  const currentImages = new Set(collectImageRefs(currentBody));
+  const historicalImages = new Set(collectImageRefs(historicalBody));
+  const imagesChanged =
+    currentImages.size !== historicalImages.size || [...currentImages].some((r) => !historicalImages.has(r));
+
+  console.log(`${id}: content differs from the ${restoreTime} snapshot.`);
+  if (imagesChanged) {
+    console.log(`  current images:    ${[...currentImages].join(", ") || "(none)"}`);
+    console.log(`  historical images: ${[...historicalImages].join(", ") || "(none)"}`);
+  }
+
+  if (dryRun) {
+    console.log("  (dry run — not writing. Re-run with DRY_RUN=false to apply.)");
+    return;
+  }
+
+  const { _rev, _updatedAt, ...restoreBody } = historical;
+  await client.createOrReplace(restoreBody as never);
+  console.log("  restored.");
+}
+
 async function main() {
   console.log(`Restoring from snapshot at ${restoreTime}${dryRun ? " (dry run)" : ""}...\n`);
   await restoreCategory(
@@ -105,6 +167,8 @@ async function main() {
     optical.map((o) => o.ref),
     "optical",
   );
+  await restoreSingleton("homepage");
+  await restoreSingleton("siteSettings");
   console.log("\nDone.");
 }
 
