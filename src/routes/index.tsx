@@ -96,7 +96,7 @@ function Home() {
           ) : watchesError || !featuredWatches?.length ? (
             <ProductGridEmpty channel="watches" label="Featured timepieces are being curated." />
           ) : (
-            featuredWatches.map((p) => <ProductCard key={p.ref} product={p} channel="watches" />)
+            featuredWatches.map((p) => <ProductCard key={p.id} product={p} channel="watches" productType="watch" />)
           )}
         </div>
       </section>
@@ -123,7 +123,7 @@ function Home() {
           ) : perfumesError || !featuredPerfumes?.length ? (
             <ProductGridEmpty channel="perfumes" label="Signature perfumes are being curated." />
           ) : (
-            featuredPerfumes.map((p) => <ProductCard key={p.ref} product={p} channel="perfumes" />)
+            featuredPerfumes.map((p) => <ProductCard key={p.id} product={p} channel="perfumes" productType="perfume" />)
           )}
         </div>
       </section>
@@ -150,7 +150,7 @@ function Home() {
           ) : sunglassesError || !featuredSunglasses?.length ? (
             <ProductGridEmpty channel="eyewear" label="Featured sunglasses are being curated." />
           ) : (
-            featuredSunglasses.map((p) => <ProductCard key={p.ref} product={p} channel="eyewear" />)
+            featuredSunglasses.map((p) => <ProductCard key={p.id} product={p} channel="eyewear" productType="sunglasses" />)
           )}
         </div>
       </section>
@@ -177,7 +177,7 @@ function Home() {
           ) : opticalError || !featuredOptical?.length ? (
             <ProductGridEmpty channel="eyewear" label="Featured optical frames are being curated." />
           ) : (
-            featuredOptical.map((p) => <ProductCard key={p.ref} product={p} channel="eyewear" />)
+            featuredOptical.map((p) => <ProductCard key={p.id} product={p} channel="eyewear" productType="optical" />)
           )}
         </div>
       </section>

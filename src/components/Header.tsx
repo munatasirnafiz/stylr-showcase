@@ -1,12 +1,74 @@
 import { useState, type ReactNode } from "react";
-import { Link } from "@tanstack/react-router";
-import { ChevronDown, Menu, Search, X } from "lucide-react";
+import { Link, useRouter } from "@tanstack/react-router";
+import { ChevronDown, Menu, Search, User, X } from "lucide-react";
+import { toast } from "sonner";
 import { Logo } from "./Logo";
 import { SearchCommand } from "./SearchCommand";
 import { HoverCard, HoverCardTrigger, HoverCardContent } from "./ui/hover-card";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 import { useSiteSettings, FALLBACK_SITE_SETTINGS } from "@/hooks/useSiteContent";
 import { useWatchBrands } from "@/hooks/useProducts";
+import { useAuth } from "@/hooks/useAuth";
+import { useProfile } from "@/hooks/useProfile";
+import { supabase } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils";
+
+function AccountMenu() {
+  const router = useRouter();
+  const { user } = useAuth();
+  const { data: profile } = useProfile();
+
+  async function handleLogout() {
+    await supabase.auth.signOut();
+    await router.invalidate();
+    toast.success("Logged out.");
+    router.history.push("/");
+  }
+
+  if (!user) {
+    return (
+      <Link to="/login" className="p-2 text-ink" aria-label="Log in">
+        <User size={20} />
+      </Link>
+    );
+  }
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger className="p-1 outline-none" aria-label="Account menu">
+        <Avatar className="h-8 w-8">
+          <AvatarImage src={profile?.avatar_url ?? undefined} alt={profile?.full_name ?? ""} />
+          <AvatarFallback className="text-xs">
+            {(profile?.full_name ?? user.email ?? "?").charAt(0).toUpperCase()}
+          </AvatarFallback>
+        </Avatar>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="w-48">
+        <DropdownMenuItem asChild>
+          <Link to="/account">My Account</Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link to="/account/favorites">Favorites</Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link to="/account/inquiries">Inquiries</Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link to="/account/delivery">Delivery</Link>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem onClick={handleLogout}>Log out</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
 
 const dropdownItemClass =
   "px-3 py-2 text-sm text-ink hover:text-gold-deep hover:bg-ivory rounded-sm transition-colors";
@@ -75,7 +137,13 @@ export function Header() {
                   </Link>
                   {brands.length > 0 && <div className="my-1 h-px bg-hairline" />}
                   {brands.map((b) => (
-                    <Link key={b} to="/watches" search={{ brand: b }} onClick={closeAll} className={dropdownItemClass}>
+                    <Link
+                      key={b}
+                      to="/watches"
+                      search={{ brand: b }}
+                      onClick={closeAll}
+                      className={dropdownItemClass}
+                    >
                       {b}
                     </Link>
                   ))}
@@ -89,10 +157,20 @@ export function Header() {
                     All Perfumes
                   </Link>
                   <div className="my-1 h-px bg-hairline" />
-                  <Link to="/perfumes" search={{ gender: "men" }} onClick={closeAll} className={dropdownItemClass}>
+                  <Link
+                    to="/perfumes"
+                    search={{ gender: "men" }}
+                    onClick={closeAll}
+                    className={dropdownItemClass}
+                  >
                     Men
                   </Link>
-                  <Link to="/perfumes" search={{ gender: "women" }} onClick={closeAll} className={dropdownItemClass}>
+                  <Link
+                    to="/perfumes"
+                    search={{ gender: "women" }}
+                    onClick={closeAll}
+                    className={dropdownItemClass}
+                  >
                     Women
                   </Link>
                 </NavHoverItem>
@@ -118,6 +196,7 @@ export function Header() {
           <button onClick={() => setSearchOpen(true)} className="p-2 text-ink" aria-label="Search">
             <Search size={20} />
           </button>
+          <AccountMenu />
           <button
             onClick={() => setOpen(!open)}
             className="md:hidden p-2 text-ink"
@@ -141,11 +220,18 @@ export function Header() {
                       className="nav-link py-1 flex items-center justify-between w-full"
                     >
                       {l.label}
-                      <ChevronDown size={14} className={cn("transition-transform", expanded && "rotate-180")} />
+                      <ChevronDown
+                        size={14}
+                        className={cn("transition-transform", expanded && "rotate-180")}
+                      />
                     </button>
                     {expanded && (
                       <div className="mt-2 mb-1 pl-3 flex flex-col gap-3 border-l border-hairline">
-                        <Link to="/watches" onClick={closeAll} className="eyebrow hover:text-gold-deep">
+                        <Link
+                          to="/watches"
+                          onClick={closeAll}
+                          className="eyebrow hover:text-gold-deep"
+                        >
                           All Watches
                         </Link>
                         {brands.map((b) => (
@@ -174,11 +260,18 @@ export function Header() {
                       className="nav-link py-1 flex items-center justify-between w-full"
                     >
                       {l.label}
-                      <ChevronDown size={14} className={cn("transition-transform", expanded && "rotate-180")} />
+                      <ChevronDown
+                        size={14}
+                        className={cn("transition-transform", expanded && "rotate-180")}
+                      />
                     </button>
                     {expanded && (
                       <div className="mt-2 mb-1 pl-3 flex flex-col gap-3 border-l border-hairline">
-                        <Link to="/perfumes" onClick={closeAll} className="eyebrow hover:text-gold-deep">
+                        <Link
+                          to="/perfumes"
+                          onClick={closeAll}
+                          className="eyebrow hover:text-gold-deep"
+                        >
                           All Perfumes
                         </Link>
                         <Link

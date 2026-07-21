@@ -92,7 +92,7 @@ function PerfumesPage() {
               label={genderLabel ? `No ${genderLabel} flacons in stock right now.` : "No flacons in stock right now."}
             />
           ) : (
-            filtered.map((p) => <ProductCard key={p.ref} product={p} channel="perfumes" />)
+            filtered.map((p) => <ProductCard key={p.id} product={p} channel="perfumes" productType="perfume" />)
           )}
         </div>
       </section>

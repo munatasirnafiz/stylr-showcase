@@ -11,12 +11,21 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WatchesRouteImport } from './routes/watches'
 import { Route as SunglassesRouteImport } from './routes/sunglasses'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as PerfumesRouteImport } from './routes/perfumes'
 import { Route as OpticalRouteImport } from './routes/optical'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as AccountRouteImport } from './routes/account'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AccountIndexRouteImport } from './routes/account/index'
 import { Route as StudioSplatRouteImport } from './routes/studio.$'
+import { Route as AccountInquiriesRouteImport } from './routes/account/inquiries'
+import { Route as AccountFavoritesRouteImport } from './routes/account/favorites'
+import { Route as AccountDeliveryRouteImport } from './routes/account/delivery'
 
 const WatchesRoute = WatchesRouteImport.update({
   id: '/watches',
@@ -26,6 +35,16 @@ const WatchesRoute = WatchesRouteImport.update({
 const SunglassesRoute = SunglassesRouteImport.update({
   id: '/sunglasses',
   path: '/sunglasses',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PerfumesRoute = PerfumesRouteImport.update({
@@ -38,9 +57,24 @@ const OpticalRoute = OpticalRouteImport.update({
   path: '/optical',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccountRoute = AccountRouteImport.update({
+  id: '/account',
+  path: '/account',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -53,82 +87,159 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AccountIndexRoute = AccountIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AccountRoute,
+} as any)
 const StudioSplatRoute = StudioSplatRouteImport.update({
   id: '/studio/$',
   path: '/studio/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AccountInquiriesRoute = AccountInquiriesRouteImport.update({
+  id: '/inquiries',
+  path: '/inquiries',
+  getParentRoute: () => AccountRoute,
+} as any)
+const AccountFavoritesRoute = AccountFavoritesRouteImport.update({
+  id: '/favorites',
+  path: '/favorites',
+  getParentRoute: () => AccountRoute,
+} as any)
+const AccountDeliveryRoute = AccountDeliveryRouteImport.update({
+  id: '/delivery',
+  path: '/delivery',
+  getParentRoute: () => AccountRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/account': typeof AccountRouteWithChildren
   '/contact': typeof ContactRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
   '/optical': typeof OpticalRoute
   '/perfumes': typeof PerfumesRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/signup': typeof SignupRoute
   '/sunglasses': typeof SunglassesRoute
   '/watches': typeof WatchesRoute
+  '/account/delivery': typeof AccountDeliveryRoute
+  '/account/favorites': typeof AccountFavoritesRoute
+  '/account/inquiries': typeof AccountInquiriesRoute
   '/studio/$': typeof StudioSplatRoute
+  '/account/': typeof AccountIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
   '/optical': typeof OpticalRoute
   '/perfumes': typeof PerfumesRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/signup': typeof SignupRoute
   '/sunglasses': typeof SunglassesRoute
   '/watches': typeof WatchesRoute
+  '/account/delivery': typeof AccountDeliveryRoute
+  '/account/favorites': typeof AccountFavoritesRoute
+  '/account/inquiries': typeof AccountInquiriesRoute
   '/studio/$': typeof StudioSplatRoute
+  '/account': typeof AccountIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/account': typeof AccountRouteWithChildren
   '/contact': typeof ContactRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
   '/optical': typeof OpticalRoute
   '/perfumes': typeof PerfumesRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/signup': typeof SignupRoute
   '/sunglasses': typeof SunglassesRoute
   '/watches': typeof WatchesRoute
+  '/account/delivery': typeof AccountDeliveryRoute
+  '/account/favorites': typeof AccountFavoritesRoute
+  '/account/inquiries': typeof AccountInquiriesRoute
   '/studio/$': typeof StudioSplatRoute
+  '/account/': typeof AccountIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/about'
+    | '/account'
     | '/contact'
+    | '/forgot-password'
+    | '/login'
     | '/optical'
     | '/perfumes'
+    | '/reset-password'
+    | '/signup'
     | '/sunglasses'
     | '/watches'
+    | '/account/delivery'
+    | '/account/favorites'
+    | '/account/inquiries'
     | '/studio/$'
+    | '/account/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/contact'
+    | '/forgot-password'
+    | '/login'
     | '/optical'
     | '/perfumes'
+    | '/reset-password'
+    | '/signup'
     | '/sunglasses'
     | '/watches'
+    | '/account/delivery'
+    | '/account/favorites'
+    | '/account/inquiries'
     | '/studio/$'
+    | '/account'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/account'
     | '/contact'
+    | '/forgot-password'
+    | '/login'
     | '/optical'
     | '/perfumes'
+    | '/reset-password'
+    | '/signup'
     | '/sunglasses'
     | '/watches'
+    | '/account/delivery'
+    | '/account/favorites'
+    | '/account/inquiries'
     | '/studio/$'
+    | '/account/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AccountRoute: typeof AccountRouteWithChildren
   ContactRoute: typeof ContactRoute
+  ForgotPasswordRoute: typeof ForgotPasswordRoute
+  LoginRoute: typeof LoginRoute
   OpticalRoute: typeof OpticalRoute
   PerfumesRoute: typeof PerfumesRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
+  SignupRoute: typeof SignupRoute
   SunglassesRoute: typeof SunglassesRoute
   WatchesRoute: typeof WatchesRoute
   StudioSplatRoute: typeof StudioSplatRoute
@@ -150,6 +261,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SunglassesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/perfumes': {
       id: '/perfumes'
       path: '/perfumes'
@@ -164,11 +289,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OpticalRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contact': {
       id: '/contact'
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/account': {
+      id: '/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AccountRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -185,6 +331,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/account/': {
+      id: '/account/'
+      path: '/'
+      fullPath: '/account/'
+      preLoaderRoute: typeof AccountIndexRouteImport
+      parentRoute: typeof AccountRoute
+    }
     '/studio/$': {
       id: '/studio/$'
       path: '/studio/$'
@@ -192,15 +345,58 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudioSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/account/inquiries': {
+      id: '/account/inquiries'
+      path: '/inquiries'
+      fullPath: '/account/inquiries'
+      preLoaderRoute: typeof AccountInquiriesRouteImport
+      parentRoute: typeof AccountRoute
+    }
+    '/account/favorites': {
+      id: '/account/favorites'
+      path: '/favorites'
+      fullPath: '/account/favorites'
+      preLoaderRoute: typeof AccountFavoritesRouteImport
+      parentRoute: typeof AccountRoute
+    }
+    '/account/delivery': {
+      id: '/account/delivery'
+      path: '/delivery'
+      fullPath: '/account/delivery'
+      preLoaderRoute: typeof AccountDeliveryRouteImport
+      parentRoute: typeof AccountRoute
+    }
   }
 }
+
+interface AccountRouteChildren {
+  AccountDeliveryRoute: typeof AccountDeliveryRoute
+  AccountFavoritesRoute: typeof AccountFavoritesRoute
+  AccountInquiriesRoute: typeof AccountInquiriesRoute
+  AccountIndexRoute: typeof AccountIndexRoute
+}
+
+const AccountRouteChildren: AccountRouteChildren = {
+  AccountDeliveryRoute: AccountDeliveryRoute,
+  AccountFavoritesRoute: AccountFavoritesRoute,
+  AccountInquiriesRoute: AccountInquiriesRoute,
+  AccountIndexRoute: AccountIndexRoute,
+}
+
+const AccountRouteWithChildren =
+  AccountRoute._addFileChildren(AccountRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AccountRoute: AccountRouteWithChildren,
   ContactRoute: ContactRoute,
+  ForgotPasswordRoute: ForgotPasswordRoute,
+  LoginRoute: LoginRoute,
   OpticalRoute: OpticalRoute,
   PerfumesRoute: PerfumesRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
+  SignupRoute: SignupRoute,
   SunglassesRoute: SunglassesRoute,
   WatchesRoute: WatchesRoute,
   StudioSplatRoute: StudioSplatRoute,

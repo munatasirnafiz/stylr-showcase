@@ -46,7 +46,7 @@ function SunglassesPage() {
           ) : isError || !sunglasses?.length ? (
             <ProductGridEmpty channel="eyewear" label="No sunglasses in stock right now." />
           ) : (
-            sunglasses.map((p) => <ProductCard key={p.ref} product={p} channel="eyewear" />)
+            sunglasses.map((p) => <ProductCard key={p.id} product={p} channel="eyewear" productType="sunglasses" />)
           )}
         </div>
       </section>
