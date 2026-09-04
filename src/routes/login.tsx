@@ -45,6 +45,26 @@ function LoginPage() {
     const { error } = await supabase.auth.signInWithPassword(values);
 
     if (error) {
+      if (error.code === "email_not_confirmed") {
+        toast.error("Please confirm your email before logging in.", {
+          description: "Check your inbox (and spam folder) for the confirmation link.",
+          action: {
+            label: "Resend email",
+            onClick: async () => {
+              const { error: resendError } = await supabase.auth.resend({
+                type: "signup",
+                email: values.email,
+              });
+              if (resendError) {
+                toast.error(resendError.message);
+              } else {
+                toast.success("Confirmation email sent again.");
+              }
+            },
+          },
+        });
+        return;
+      }
       toast.error(error.message);
       return;
     }

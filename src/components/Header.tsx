@@ -34,9 +34,19 @@ function AccountMenu() {
 
   if (!user) {
     return (
-      <Link to="/login" className="p-2 text-ink" aria-label="Log in">
-        <User size={20} />
-      </Link>
+      <DropdownMenu>
+        <DropdownMenuTrigger className="p-2 text-ink outline-none" aria-label="Account">
+          <User size={20} />
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end" className="w-40">
+          <DropdownMenuItem asChild>
+            <Link to="/login">Log in</Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <Link to="/signup">Sign up</Link>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
     );
   }
 

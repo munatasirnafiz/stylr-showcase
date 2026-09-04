@@ -57,7 +57,10 @@ function SignupPage() {
     }
 
     if (!data.session) {
-      toast.success("Check your email to confirm your account before logging in.");
+      toast.success("Confirm your email to finish creating your account.", {
+        description: `We've sent a link to ${values.email} — check spam if it doesn't arrive in a few minutes.`,
+        duration: 8000,
+      });
       router.navigate({ to: "/login" });
       return;
     }
