@@ -85,7 +85,7 @@ function WatchesPage() {
               label={brand ? `No timepieces from ${brand} right now.` : "No timepieces in residence right now."}
             />
           ) : (
-            filtered.map((p) => <ProductCard key={p.ref} product={p} channel="watches" />)
+            filtered.map((p) => <ProductCard key={p.id} product={p} channel="watches" productType="watch" />)
           )}
         </div>
       </section>

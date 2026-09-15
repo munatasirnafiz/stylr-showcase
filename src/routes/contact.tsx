@@ -1,12 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SectionLabel } from "@/components/ui-bits";
 import { useSiteSettings, useInquiryLink, FALLBACK_SITE_SETTINGS } from "@/hooks/useSiteContent";
+import { useAuth } from "@/hooks/useAuth";
+import { useLogInquiry } from "@/hooks/useInquiries";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Contact — Stylr.store · Mirpur-2, Dhaka" },
-      { name: "description", content: "Reach Stylr.store by WhatsApp for rare watches and niche perfumes. Bangladesh-wide delivery from our Mirpur-2 atelier." },
+      {
+        name: "description",
+        content:
+          "Reach Stylr.store by WhatsApp for rare watches and niche perfumes. Bangladesh-wide delivery from our Mirpur-2 atelier.",
+      },
       { property: "og:title", content: "Contact — Stylr.store" },
       { property: "og:description", content: "Start a private inquiry by WhatsApp." },
     ],
@@ -18,12 +24,24 @@ function ContactPage() {
   const { data } = useSiteSettings();
   const settings = data ?? FALLBACK_SITE_SETTINGS;
   const startInquiryHref = useInquiryLink("watches");
+  const { user } = useAuth();
+  const logInquiry = useLogInquiry();
 
   const watchesPhone = settings.phones.find((p) => p.channel === "watches");
   const perfumesPhone = settings.phones.find((p) => p.channel === "perfumes");
   const lines = [
-    { label: "Watches Line", phone: watchesPhone?.phone ?? "", wa: `https://wa.me/${watchesPhone?.waNumber ?? ""}`, note: "Direct line for timepiece curators." },
-    { label: "Perfumes Line", phone: perfumesPhone?.phone ?? "", wa: `https://wa.me/${perfumesPhone?.waNumber ?? ""}`, note: "Direct line for the parfumerie atelier." },
+    {
+      label: "Watches Line",
+      phone: watchesPhone?.phone ?? "",
+      wa: `https://wa.me/${watchesPhone?.waNumber ?? ""}`,
+      note: "Direct line for timepiece curators.",
+    },
+    {
+      label: "Perfumes Line",
+      phone: perfumesPhone?.phone ?? "",
+      wa: `https://wa.me/${perfumesPhone?.waNumber ?? ""}`,
+      note: "Direct line for the parfumerie atelier.",
+    },
   ];
 
   const mapQuery = encodeURIComponent(settings.addressLines.join(", "));
@@ -36,13 +54,19 @@ function ContactPage() {
           Start a <span className="italic">private</span> inquiry.
         </h1>
         <p className="mt-6 text-muted-ink text-lg max-w-xl">
-          Tell us what you're looking for. A curator will respond personally, usually within a few hours.
+          Tell us what you're looking for. A curator will respond personally, usually within a few
+          hours.
         </p>
         <div className="mt-10">
           <a
             href={startInquiryHref}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => {
+              if (user) {
+                logInquiry.mutate({ productName: "General inquiry", channel: "watches" });
+              }
+            }}
             className="inline-flex items-center justify-center gap-2 bg-charcoal text-ivory hover:bg-ink transition-colors px-8 py-4 text-xs uppercase tracking-[0.22em] font-medium"
           >
             Start a WhatsApp Inquiry →
@@ -65,7 +89,12 @@ function ContactPage() {
             </address>
             <p className="mt-6 text-muted-ink">
               <span className="eyebrow block mb-1">Email</span>
-              <a href={`mailto:${settings.email}`} className="text-ink hover:text-gold transition-colors">{settings.email}</a>
+              <a
+                href={`mailto:${settings.email}`}
+                className="text-ink hover:text-gold transition-colors"
+              >
+                {settings.email}
+              </a>
             </p>
             <p className="mt-6 text-muted-ink">
               <span className="eyebrow block mb-1">Hours</span>
@@ -74,7 +103,10 @@ function ContactPage() {
           </div>
           <div className="lg:col-span-2 space-y-5">
             {lines.map((l) => (
-              <div key={l.label} className="card-lux p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <div
+                key={l.label}
+                className="card-lux p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+              >
                 <div>
                   <span className="eyebrow">{l.label}</span>
                   <p className="font-serif text-xl text-ink mt-2">{l.phone}</p>

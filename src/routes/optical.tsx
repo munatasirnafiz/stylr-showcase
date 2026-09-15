@@ -46,7 +46,7 @@ function OpticalPage() {
           ) : isError || !optical?.length ? (
             <ProductGridEmpty channel="eyewear" label="No optical frames in stock right now." />
           ) : (
-            optical.map((p) => <ProductCard key={p.ref} product={p} channel="eyewear" />)
+            optical.map((p) => <ProductCard key={p.id} product={p} channel="eyewear" productType="optical" />)
           )}
         </div>
       </section>

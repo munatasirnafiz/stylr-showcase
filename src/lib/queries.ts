@@ -59,6 +59,11 @@ export const FEATURED_SUNGLASSES_QUERY = `*[_type == "sunglasses" && featured ==
 export const ALL_OPTICAL_QUERY = `*[_type == "optical"] | order(_createdAt desc){ ${OPTICAL_FIELDS} }`;
 export const FEATURED_OPTICAL_QUERY = `*[_type == "optical" && featured == true] | order(_createdAt desc)[0...4]{ ${OPTICAL_FIELDS} }`;
 
+export const WATCHES_BY_IDS_QUERY = `*[_type == "watch" && _id in $ids]{ ${WATCH_FIELDS} }`;
+export const PERFUMES_BY_IDS_QUERY = `*[_type == "perfume" && _id in $ids]{ ${PERFUME_FIELDS} }`;
+export const SUNGLASSES_BY_IDS_QUERY = `*[_type == "sunglasses" && _id in $ids]{ ${SUNGLASSES_FIELDS} }`;
+export const OPTICAL_BY_IDS_QUERY = `*[_type == "optical" && _id in $ids]{ ${OPTICAL_FIELDS} }`;
+
 export interface SanityNavLink {
   label: string;
   path: string;

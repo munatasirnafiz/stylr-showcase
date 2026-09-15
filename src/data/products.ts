@@ -1,8 +1,11 @@
 import type { Product } from "@/components/ProductCard";
 
-const watchPrices = [9750, 9400, 9800, 9550, 9650, 9450, 9700, 9500, 9600, 9780, 9720, 9420, 9680, 9530, 9610, 9470, 9590, 9740, 9430, 9670];
+const watchPrices = [
+  9750, 9400, 9800, 9550, 9650, 9450, 9700, 9500, 9600, 9780, 9720, 9420, 9680, 9530, 9610, 9470,
+  9590, 9740, 9430, 9670,
+];
 
-const watchesBase: Omit<Product, "price">[] = [
+const watchesBase: Omit<Product, "price" | "id">[] = [
   // Latest uploads (6)
   {
     ref: "REF · GU-DV-SN",
@@ -192,10 +195,11 @@ const watchesBase: Omit<Product, "price">[] = [
 
 export const watches: Product[] = watchesBase.map((w, i) => ({
   ...w,
+  id: w.ref,
   price: watchPrices[i % watchPrices.length],
 }));
 
-export const perfumes: Product[] = [
+const perfumesBase: Omit<Product, "id">[] = [
   {
     ref: "N° 501981",
     brand: "Parfums de Marly",
@@ -334,12 +338,14 @@ export const perfumes: Product[] = [
   },
 ];
 
+export const perfumes: Product[] = perfumesBase.map((p) => ({ ...p, id: p.ref }));
+
 export type EyewearKind = "sunglasses" | "optical";
 export interface EyewearProduct extends Product {
   kind: EyewearKind;
 }
 
-export const eyewear: EyewearProduct[] = [
+const eyewearBase: Omit<EyewearProduct, "id">[] = [
   // === SUNGLASSES — new uploads ===
   {
     ref: "REF · RB3025-58 / 2F",
@@ -506,6 +512,8 @@ export const eyewear: EyewearProduct[] = [
   },
 ];
 
+export const eyewear: EyewearProduct[] = eyewearBase.map((e) => ({ ...e, id: e.ref }));
+
 export const sunglasses = eyewear.filter((e) => e.kind === "sunglasses");
 export const optical = eyewear.filter((e) => e.kind === "optical");
 
@@ -514,4 +522,3 @@ export const featuredPerfumes = perfumes.slice(0, 4);
 export const featuredSunglasses = sunglasses.slice(0, 4);
 export const featuredOptical = optical.slice(0, 4);
 export const featuredEyewear = [...sunglasses.slice(0, 2), ...optical.slice(0, 2)];
-
