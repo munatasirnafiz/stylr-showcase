@@ -38,11 +38,15 @@ function AccountMenu() {
         <DropdownMenuTrigger className="p-2 text-ink outline-none" aria-label="Account">
           <User size={20} />
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-40">
-          <DropdownMenuItem asChild>
+        <DropdownMenuContent
+          align="end"
+          sideOffset={10}
+          className="w-40 rounded-none border-hairline p-1.5 shadow-none"
+        >
+          <DropdownMenuItem asChild className={dropdownItemClass}>
             <Link to="/login">Log in</Link>
           </DropdownMenuItem>
-          <DropdownMenuItem asChild>
+          <DropdownMenuItem asChild className={dropdownItemClass}>
             <Link to="/signup">Sign up</Link>
           </DropdownMenuItem>
         </DropdownMenuContent>
@@ -60,28 +64,34 @@ function AccountMenu() {
           </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-48">
-        <DropdownMenuItem asChild>
+      <DropdownMenuContent
+        align="end"
+        sideOffset={10}
+        className="w-48 rounded-none border-hairline p-1.5 shadow-none"
+      >
+        <DropdownMenuItem asChild className={dropdownItemClass}>
           <Link to="/account">My Account</Link>
         </DropdownMenuItem>
-        <DropdownMenuItem asChild>
+        <DropdownMenuItem asChild className={dropdownItemClass}>
           <Link to="/account/favorites">Favorites</Link>
         </DropdownMenuItem>
-        <DropdownMenuItem asChild>
+        <DropdownMenuItem asChild className={dropdownItemClass}>
           <Link to="/account/inquiries">Inquiries</Link>
         </DropdownMenuItem>
-        <DropdownMenuItem asChild>
+        <DropdownMenuItem asChild className={dropdownItemClass}>
           <Link to="/account/delivery">Delivery</Link>
         </DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={handleLogout}>Log out</DropdownMenuItem>
+        <DropdownMenuSeparator className="bg-hairline" />
+        <DropdownMenuItem onClick={handleLogout} className={dropdownItemClass}>
+          Log out
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
 }
 
 const dropdownItemClass =
-  "px-3 py-2 text-sm text-ink hover:text-gold-deep hover:bg-ivory rounded-sm transition-colors";
+  "px-3 py-2 text-sm text-ink hover:text-gold-deep hover:bg-ivory rounded-none transition-colors cursor-pointer";
 
 function NavHoverItem({
   to,
