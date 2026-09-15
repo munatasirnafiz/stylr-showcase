@@ -70,7 +70,7 @@ function LoginPage() {
     }
 
     await router.invalidate();
-    router.history.push(redirect ?? "/account");
+    router.history.push(redirect ?? "/");
   }
 
   return (

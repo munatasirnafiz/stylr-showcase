@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -43,6 +43,7 @@ const profileSchema = z.object({
 type ProfileValues = z.infer<typeof profileSchema>;
 
 function ProfilePage() {
+  const router = useRouter();
   const { user } = useAuth();
   const { data: profile, isLoading } = useProfile();
   const updateProfile = useUpdateProfile();
@@ -71,6 +72,7 @@ function ProfilePage() {
       preferred_contact_method: values.preferredContactMethod,
     });
     toast.success("Profile updated.");
+    router.history.push("/");
   }
 
   async function handleAvatarChange(e: React.ChangeEvent<HTMLInputElement>) {
